@@ -5,7 +5,7 @@
 struct studentas
 {
     std::string vardas, pavarde;
-    double nd, egz, galutinis;
+    double nd, egz, vidurkis, mediana;
 };
 
 studentas A[20];
@@ -25,16 +25,36 @@ void read (int a)
 
 void print (int a)
 {
-    std::cout << "Vardas\t" << "Pavarde\t" << "Galutinis (Vid.)" << std::endl; 
-    for (int i = 0; i < 50; i++)
+    std::string pasirinkti;
+    std::cout << "Ka noretumete matyti - vidurki (Vid) ar mediana (Med)? "; std::cin >> pasirinkti;
+    if (pasirinkti == "vid" || pasirinkti == "Vid")
     {
-        std::cout << "-";
-    }
-    std::cout << "\n";
+        std::cout << "Vardas\t" << "Pavarde\t" << "Galutinis (Vid.)" << std::endl; 
+        for (int i = 0; i < 50; i++)
+        {
+            std::cout << "-";
+        }
+        std::cout << "\n";
 
-    for (int x = 0; x < a; x++)
+        for (int x = 0; x < a; x++)
+        {
+            std::cout << A[x].vardas << "\t" << A[x].pavarde << "\t" << std::fixed << std::setprecision(2) << A[x].vidurkis << std::endl;
+        }
+    }
+
+    else
     {
-        std::cout << A[x].vardas << "\t" << A[x].pavarde << "\t" << std::fixed << std::setprecision(2) << A[x].galutinis << std::endl;
+        std::cout << "Vardas\t" << "Pavarde\t" << "Galutinis (Med.)" << std::endl; 
+        for (int i = 0; i < 50; i++)
+        {
+            std::cout << "-";
+        }
+        std::cout << "\n";
+
+        for (int x = 0; x < a; x++)
+        {
+            std::cout << A[x].vardas << "\t" << A[x].pavarde << "\t" << std::fixed << std::setprecision(2) << A[x].mediana << std::endl;
+        }
     }
 }
 
@@ -42,7 +62,8 @@ void galutinis (int a)
 {
     for (int i = 0; i < a; i++)
     {
-        A[i].galutinis = 0.4 * A[i].nd + 0.6 * A[i].egz;
+        A[i].vidurkis = 0.4 * A[i].nd + 0.6 * A[i].egz;
+        A[i].mediana = (A[i].nd + A[i].egz) / 2;
     }
 }
 
