@@ -5,6 +5,8 @@
 #include <utility>
 #include <stdlib.h>
 #include <time.h>
+#include <fstream>
+#include <sstream>
 
 struct studentas
 {
@@ -33,9 +35,9 @@ void galutinis (int z)
         stud[z].vidurkis = 0.4 *  suma + 0.6 * stud[z].egz;
 
         stud[z].nd.push_back(stud[z].egz);
-        for (int x = 0; x < stud[z].nd.size(); x++)
+        for (int x = 0; x < stud[z].nd.size() - 1; x++)
         {
-            for (int y = x + 1; y < stud[z].nd.size() - 1; y++)
+            for (int y = x + 1; y < stud[z].nd.size(); y++)
             {
                 if (stud[z].nd[x] > stud[z].nd[y])
                 {
@@ -58,46 +60,82 @@ void galutinis (int z)
 
 void read ()
 {
-    int a;
     char input;
-    std::cout << "Iveskite studento varda ir pavarde." << std::endl;
-    std::string v;
-    std::cout << "Vardas: "; std::cin >> v;
     int i = 0;
-    while (v != "0") {
-        srand (time(NULL));
-        stud.push_back(studentas());
-        stud[i].vardas = v;
-        std::cout << "Pavarde: "; std::cin >> stud[i].pavarde;
-        std::cout << "Ar norite, kad studentu namu darbu ir egzaminu rezultatai butu generuojami atsitiktinai?" << std::endl;
-        std::cout << "Jei taip rasykite - t, jei ne - n: "; std::cin >> input;
-        if (input == 't')
-        {
-            std::cout << "Iveskite namu darbu rezultatu kieki: "; std::cin >> stud[i].n;
-            for (int x = 0; x < stud[i].n; x++)
-            {
-                stud[i].nd.push_back(rand() % 10 + 1);
-            }
-            stud[i].egz = rand() % 10 + 1;
+    std::cout << "Ar norite nuskaityti duomenis is failo kursiokai.txt?" << std::endl;
+    std::cout << "Jei taip rasykite t, jei ne - n: "; std::cin >> input;
+    if(input == 't') {
+        std::ifstream r ("kursiokai.txt");
+        std::string line;
+        int number, t = 0;
+        r >> line;
+        while (line != "Egzaminas") {
+            t++;
+            r >> line;
         }
-        else
-        {
-            std::cout << "Iveskite studento namu darbu ir egzamino rezultatus (10-baleje sistemoje)." << std::endl;
-            std::cout << "Namu darbai (baige iveskite 0): "; std::cin >> a;
-            while (a != 0) {
-                stud[i].nd.push_back(a);
-                std::cin >> a;
+        t = t - 2;
+        while (!r.eof()) {
+            std::cout << "lol" << std::endl;
+            stud.push_back(studentas());
+            r >> stud[i].vardas;
+            r >> stud[i].pavarde;
+            for (int y = 0; y < t; y++) {
+                r >> number;
+                stud[i].nd.push_back(number);
             }
-            std::cout << "Egzaminas: "; std::cin >> stud[i].egz;
+            r >> stud[i].egz;
+            galutinis (i);
+            i++;
         }
-        galutinis (i);
-        i++;
-        std::cout << "Vardas (spauskite 0, jei norite praleisti): "; std::cin >> v;
+        r.close();
     }
+    else
+    {
+        int a;
+        std::cout << "Iveskite studento varda ir pavarde." << std::endl;
+        std::string v;
+        std::cout << "Vardas: "; std::cin >> v;
+        while (v != "0") {
+            srand (time(NULL));
+            stud.push_back(studentas());
+            stud[i].vardas = v;
+            std::cout << "Pavarde: "; std::cin >> stud[i].pavarde;
+            std::cout << "Ar norite, kad studentu namu darbu ir egzaminu rezultatai butu generuojami atsitiktinai?" << std::endl;
+            std::cout << "Jei taip rasykite - t, jei ne - n: "; std::cin >> input;
+            if (input == 't') {
+                std::cout << "Iveskite namu darbu rezultatu kieki: "; std::cin >> stud[i].n;
+                for (int x = 0; x < stud[i].n; x++) {
+                    stud[i].nd.push_back(rand() % 10 + 1);
+                }
+                stud[i].egz = rand() % 10 + 1;
+            }
+            else {
+                std::cout << "Iveskite studento namu darbu ir egzamino rezultatus (10-baleje sistemoje)." << std::endl;
+                std::cout << "Namu darbai (baige iveskite 0): "; std::cin >> a;
+                while (a != 0) {
+                    stud[i].nd.push_back(a);
+                    std::cin >> a;
+                }
+                std::cout << "Egzaminas: "; std::cin >> stud[i].egz;
+            }
+            galutinis (i);
+            i++;
+            std::cout << "Vardas (spauskite 0, jei norite praleisti): "; std::cin >> v;
+        }
+    }
+
 }
 
 void print ()
 {
+    for (int x = 0; x < stud.size() - 1; x++) {
+        for (int y = x + 1; y < stud.size(); y++) {
+             if (stud[x].vardas > stud[y].vardas) {
+                    std::swap(stud[x], stud[y]);
+            }
+        }
+    }
+
     std::string pasirinkti;
     std::cout << "Ka noretumete matyti - vidurki (Vid) ar mediana (Med)? "; std::cin >> pasirinkti;
     if (pasirinkti == "vid" || pasirinkti == "Vid")
@@ -109,8 +147,7 @@ void print ()
         }
         std::cout << "\n";
 
-        for (int x = 0; x < stud.size(); x++)
-        {
+        for (int x = 0; x < stud.size(); x++) {
             std::cout << stud[x].vardas << "\t" << stud[x].pavarde << "\t" << std::fixed << std::setprecision(2) << stud[x].vidurkis << std::endl;
         }
     }
@@ -124,8 +161,7 @@ void print ()
         }
         std::cout << "\n";
 
-        for (int x = 0; x < stud.size(); x++)
-        {
+        for (int x = 0; x < stud.size(); x++) {
             std::cout << stud[x].vardas << "\t" << stud[x].pavarde << "\t" << std::fixed << std::setprecision(2) << stud[x].mediana << std::endl;
         }
     }
