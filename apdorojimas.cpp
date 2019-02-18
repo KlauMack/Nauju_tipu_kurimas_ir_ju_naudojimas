@@ -75,7 +75,6 @@ void read ()
         }
         t = t - 2;
         while (!r.eof()) {
-            std::cout << "lol" << std::endl;
             stud.push_back(studentas());
             r >> stud[i].vardas;
             r >> stud[i].pavarde;
