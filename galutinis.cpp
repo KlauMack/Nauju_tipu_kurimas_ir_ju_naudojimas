@@ -7,6 +7,7 @@
 void galutinis (int z)
 {
     int suma = 0;
+    double Vidurkis;
     if (stud[z].nd.size() == 1)
     {
         stud[z].vidurkis = 0.4 *  stud[z].nd[0] + 0.6 * stud[z].egz;
@@ -18,7 +19,8 @@ void galutinis (int z)
         {
             suma += stud[z].nd[i];
         }
-        stud[z].vidurkis = 0.4 *  suma + 0.6 * stud[z].egz;
+        Vidurkis = (double) suma / stud[z].nd.size();
+        stud[z].vidurkis = 0.4 *  Vidurkis + 0.6 * stud[z].egz;
 
         stud[z].nd.push_back(stud[z].egz);
         for (int x = 0; x < stud[z].nd.size() - 1; x++)

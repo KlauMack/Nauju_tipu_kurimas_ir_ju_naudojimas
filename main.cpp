@@ -1,8 +1,11 @@
 #include "main.h"
 #include <iostream>
+#include <chrono>
 
 int main()
 {
+    auto start = std::chrono::high_resolution_clock::now();
+
     try {
         read();
     } catch (const char* msg) {
@@ -11,5 +14,8 @@ int main()
     }
     print ();
 
+    auto end = std::chrono::high_resolution_clock::now();
+    std::chrono::duration<double> diff = end - start;
+    std::cout << "Visos programos veikimo laikas: " << diff.count() << " s\n";
     return 0;
 }
