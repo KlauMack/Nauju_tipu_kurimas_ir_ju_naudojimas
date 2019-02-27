@@ -17,5 +17,6 @@ extern std::vector<studentas> stud;
 void print ();
 void read ();
 void galutinis (int z);
+void generate (int a);
 
 #endif
