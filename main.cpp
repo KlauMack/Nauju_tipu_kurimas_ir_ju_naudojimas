@@ -12,7 +12,7 @@ int main()
         std::cerr << msg << std::endl;
         return EXIT_FAILURE;
     }
-    print ();
+    //print ();
 
     auto end = std::chrono::high_resolution_clock::now();
     std::chrono::duration<double> diff = end - start;

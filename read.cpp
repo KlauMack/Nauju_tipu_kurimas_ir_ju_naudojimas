@@ -11,13 +11,15 @@ std::vector<studentas> stud;
 void read ()
 {
     char input;
-    int genNumber;
+    float genNumber;
     int i = 0;
-    std::cout << "Ar norite nuskaityti duomenis iš failo (kursiokai.txt)?" << std::endl;
-    std::cout << "Jei taip, rašykite t, jei ne - n: "; std::cin >> input;
+    //std::cout << "Ar norite nuskaityti duomenis iš failo (kursiokai.txt)?" << std::endl;
+    //std::cout << "Jei taip, rašykite t, jei ne - n: "; std::cin >> input;
+    input = 't';
     if(input == 't') {
-        std::cout << "Pasirinkite sugeneruoti 10, 100, 1000, 10000, 100000 studentų duomenų įrašų: "; std::cin >> genNumber;
-        generate (genNumber);
+        //std::cout << "Pasirinkite sugeneruoti 10, 100, 1000, 10000, 100000 studentų duomenų įrašų: "; std::cin >> genNumber;
+        //genNumber = 100;
+        //generate (genNumber);
 
         std::ifstream r ("kursiokai.txt");
         std::string line;
