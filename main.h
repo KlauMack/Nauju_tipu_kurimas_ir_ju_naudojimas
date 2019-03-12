@@ -1,6 +1,6 @@
-#include <list>
-#include <string>
 #include <vector>
+#include <string>
+#include <deque>
 
 #ifndef HEADER_H
 #define HEADER_H
@@ -13,7 +13,7 @@ struct studentas
     double vidurkis, mediana;
 };
 
-extern std::list<studentas> stud;
+extern std::deque<studentas> stud;
 
 void print ();
 void read ();

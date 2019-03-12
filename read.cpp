@@ -3,12 +3,11 @@
 #include <stdlib.h>
 #include <fstream>
 #include <string>
-#include <list>
-#include <time.h>
-#include <iterator>
 #include <vector>
+#include <time.h>
+#include <deque>
 
-std::list<studentas> stud;
+std::deque<studentas> stud;
 
 void read ()
 {
@@ -39,15 +38,15 @@ void read ()
         t = t - 2;
 
         while (!r.eof()) {
-            studentas s;
-            r >> s.vardas;
-            r >> s.pavarde;
-            for (int q = 0; q < t; q++) {
+            stud.push_back(studentas());
+            r >> stud[i].vardas;
+            r >> stud[i].pavarde;
+            for (int j = 0; j < t; j++) {
                 r >> number;
-                s.nd.push_back(number);
+                stud[i].nd.push_back(number);
             }
-            r >> s.egz;
-            stud.push_back(s);
+            r >> stud[i].egz;
+
             if (i == genNumber) {
                 stud.pop_back();
             }
@@ -55,11 +54,9 @@ void read ()
             ++i;
         }
         r.close();
-        stud.clear();
-        }
-    /*else
+    }
+    else
     {
-        std::advance(j, i);
         int a;
         std::cout << "Įveskite studento vardą(-us) ir pavardę(-es)." << std::endl;
         std::string v;
@@ -67,29 +64,29 @@ void read ()
         while (v != "0") {
             srand (time(NULL));
             stud.push_back(studentas());
-            j.vardas = v;
-            std::cout << "Pavardė: "; std::cin >> j.pavarde;
+            stud[i].vardas = v;
+            std::cout << "Pavardė: "; std::cin >> stud[i].pavarde;
             std::cout << "Ar norite, kad studentų namų darbų ir egzaminų rezultatai būtų generuojami atsitiktinai?" << std::endl;
             std::cout << "Jei taip, rašykite - t, jei ne - n: "; std::cin >> input;
             if (input == 't') {
-                std::cout << "Įveskite namų darbų rezultatų kiekį: "; std::cin >> j.n;
-                for (int x = 0; x < j.n; x++) {
-                    j.nd.push_back(rand() % 10 + 1);
+                std::cout << "Įveskite namų darbų rezultatų kiekį: "; std::cin >> stud[i].n;
+                for (int x = 0; x < stud[i].n; x++) {
+                    stud[i].nd.push_back(rand() % 10 + 1);
                 }
-                j.egz = rand() % 10 + 1;
+                stud[i].egz = rand() % 10 + 1;
             }
             else {
                 std::cout << "Įveskite studento namų darbų ir egzamino rezultatus (10-balėje sistemoje)." << std::endl;
                 std::cout << "Namu darbai (baigę įveskite 0): "; std::cin >> a;
                 while (a != 0) {
-                    j.nd.push_back(a);
+                    stud[i].nd.push_back(a);
                     std::cin >> a;
                 }
-                //std::cout << "Egzaminas: "; std::cin >> (*it2).egz;
+                std::cout << "Egzaminas: "; std::cin >> stud[i].egz;
             }
             galutinis (i);
             i++;
             std::cout << "Vardas (spauskite 0, jei norite baigti): "; std::cin >> v;
         }
-    }*/
+    }
 }
