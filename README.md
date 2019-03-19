@@ -19,23 +19,35 @@ Vardas2   Pavardė2    y.yy
 - `g++ -std=c++11 main.o galutinis.o print.o read.o generate.o -o apdorojimas`
 - `./apdorojimas`
 ## Versijų istorija (changelog)
+### v1.0
+
+### [v0.5.3](https://github.com/KlauMack/Duomenu_apdorojimas/releases/tag/v0.5.3)
+
+**Koreguota:**
+
+- Matuojamas programos veikimo laikas, naudojant `std::deque` konteinerį
+- Skaičiavimai vykdomi iš identiško duomenų failo, kurį sudaro 100 studentų duomenų.
+```shell
+Programos veikimo laikas (vidurkis iš 5 skaičiavimų): 0,00096704 s
+```
+### [v0.5.2](https://github.com/KlauMack/Duomenu_apdorojimas/releases/tag/v0.5.2)
+
+**Koreguota:**
+
+- Matuojamas programos veikimo laikas, naudojant `std::list` konteinerį
+- Skaičiavimai vykdomi iš identiško duomenų failo, kurį sudaro 100 studentų duomenų.
+```shell
+Programos veikimo laikas (vidurkis iš 5 skaičiavimų): 0,00046482 s
+```
 ### [v0.5.1](https://github.com/KlauMack/Duomenu_apdorojimas/releases/tag/v0.5.1)
 
 **Koreguota:**
 
-- Matuojamas programos veikimo laikas, naudojant `std::list` konteinerį.
+- Matuojamas programos veikimo laikas (be failo kūrimo ir studentų duomenų išvedimo į du naujus failus), naudojant `std::vector` konteinerį
 - Skaičiavimai vykdomi iš identiško duomenų failo, kurį sudaro 100 studentų duomenų.
 ```shell
-Programos veikimo laikas: 0,00046482 s.
-
-### [v0.5.1](https://github.com/KlauMack/Duomenu_apdorojimas/releases/tag/v0.5.1)
-
-**Koreguota:**
-
-- Matuojamas programos veikimo laikas (be failo kūrimo ir studentų duomenų išvedimo į du naujus failus), naudojant `std::vector` konteinerį.
-- Skaičiavimai vykdomi iš identiško duomenų failo, kurį sudaro 100 studentų duomenų.
-```shell
-Programos veikimo laikas: 0,00043326 s.
+Programos veikimo laikas (vidurkis iš 5 skaičiavimų): 0,00043326 s
+```
 ### [v0.4.1](https://github.com/KlauMack/Duomenu_apdorojimas/releases/tag/v0.4.1)
 
 **Koreguota:**
@@ -46,7 +58,7 @@ Programos veikimo laikas: 0,00043326 s.
 
 **Papildyta:**
 
-- Programa sugeneruoja pasirinktinai duomenų failą su (10, 100, 1000, 10000, 100000) studentų įrašais.
+- Programa sugeneruoja pasirinktinai duomenų failą su (10, 100, 1000, 10000, 100000) studentų įrašais
 - Studentai pagal galutinį balą suskirstomi į dvi kategorijas:
   - **vargšiukai**, jei **galutinis balas < 5**
   - **kietiakai**, jei **galutinis balas >= 5**
@@ -56,30 +68,32 @@ Programos veikimo laikas: 0,00043326 s.
   - surūšiuotų studentų išvedimas į failus
   
 **Laikų rezultatai:**
-- Visi skaičiavimai vykdomi, kai studentų namų darbų rezultatų skaičius lygus 5.
+- Visi skaičiavimai vykdomi, kai studentų namų darbų rezultatų skaičius lygus 5
+- Gauti skaičiavimų rezultatai - vidurkis iš 5 skaičiavimų.
+- Galutinis balas, kuris buvo pasirinktas skačiuoti - vidurkis.
 ```shell
 Duomenų failą sudaro 10 studentų įrašų
-Failo kūrimas:
-Išvedimas į du failus:
-Visos prgoramos veikimas:
+Failo kūrimas: 0,00362138 s
+Išvedimas į du failus: 0,00365794 s
+Visos prgoramos veikimas: 0,01728572 s
 
 Duomenų failą sudaro 100 studentų įrašų
-Failo kūrimas:
-Išvedimas į du failus:
-Visos prgoramos veikimas:
+Failo kūrimas: 0,0212869 s
+Išvedimas į du failus: 0,00361348 s
+Visos prgoramos veikimas: 0,02436062 s
 
 Duomenų failą sudaro 1000 studentų įrašų
-Failo kūrimas:
-Išvedimas į du failus:
-Visos prgoramos veikimas:
+Failo kūrimas: 0,00642516 s
+Išvedimas į du failus: 0,0054372 s
+Visos prgoramos veikimas: 0,1331356 s
 
 Duomenų failą sudaro 10000 studentų įrašų
-Failo kūrimas:
-Išvedimas į du failus:
-Visos prgoramos veikimas:
+Failo kūrimas: 0,0277831 s
+Išvedimas į du failus: 0,01065764 s
+Visos prgoramos veikimas: 5,705478 s
 
 Duomenų failą sudaro 100000 studentų įrašų
-Failo kūrimas:
+Failo kūrimas: 
 Išvedimas į du failus:
 Visos prgoramos veikimas:
 ```
