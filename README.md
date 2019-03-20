@@ -62,7 +62,7 @@ Programos veikimo laikas (vidurkis iš 5 skaičiavimų): 0,00043326 s
 - Studentai pagal galutinį balą suskirstomi į dvi kategorijas:
   - **vargšiukai**, jei **galutinis balas < 5**
   - **kietiakai**, jei **galutinis balas >= 5**
-- Surūšiuoti studentai išvedami į du naujus failus (```"vargšiukai.txt", "kietiakai.txt"```)
+- Surūšiuoti studentai išvedami į du naujus failus (```"vargšiukai.txt"```, ```"kietiakai.txt"```)
 - Programa išmatuoja visos programos veikimo laiką (naudojant ```<chrono>``` biblioteką) bei šias programos dalis:
   - duomenų failo kūrimas
   - surūšiuotų studentų išvedimas į failus
@@ -73,29 +73,29 @@ Programos veikimo laikas (vidurkis iš 5 skaičiavimų): 0,00043326 s
 - Galutinis balas, kuris buvo pasirinktas skačiuoti - vidurkis.
 ```shell
 Duomenų failą sudaro 10 studentų įrašų
-Failo kūrimas: 0,00362138 s
-Išvedimas į du failus: 0,00365794 s
+Failo kūrimas:            0,00362138 s
+Išvedimas į du failus:    0,00365794 s
 Visos prgoramos veikimas: 0,01728572 s
 
 Duomenų failą sudaro 100 studentų įrašų
-Failo kūrimas: 0,0212869 s
-Išvedimas į du failus: 0,00361348 s
+Failo kūrimas:            0,0212869 s
+Išvedimas į du failus:    0,00361348 s
 Visos prgoramos veikimas: 0,02436062 s
 
 Duomenų failą sudaro 1000 studentų įrašų
-Failo kūrimas: 0,00642516 s
-Išvedimas į du failus: 0,0054372 s
+Failo kūrimas:            0,00642516 s
+Išvedimas į du failus:    0,0054372 s
 Visos prgoramos veikimas: 0,1331356 s
 
 Duomenų failą sudaro 10000 studentų įrašų
-Failo kūrimas: 0,0277831 s
-Išvedimas į du failus: 0,01065764 s
+Failo kūrimas:            0,0277831 s
+Išvedimas į du failus:    0,01065764 s
 Visos prgoramos veikimas: 5,705478 s
 
 Duomenų failą sudaro 100000 studentų įrašų
-Failo kūrimas: 
-Išvedimas į du failus:
-Visos prgoramos veikimas:
+Failo kūrimas:            0,2306435 s
+Išvedimas į du failus:    0,1029456 s
+Visos prgoramos veikimas: 464,4325 s
 ```
 ### [v0.3](https://github.com/KlauMack/Duomenu_apdorojimas/releases/tag/v0.3)
 
