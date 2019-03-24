@@ -8,9 +8,33 @@
   Visos programos veikimo laikas - vidurkis, gaunamas paleidžiant programą 5 kartus
 - Duomenų failą sudaro 10000 studentų įrašų.
 ```shell
-Programos rezultatas: Segmentation fault (core dumbed).
+Programos paleidimo laikai:
+1.  2,12192 s
+2.  2,10967 s
+3.  2,12307 s
+4.  2,1336 s
+5.  2,11773 s
+
+Galutinis programos laikas: 2,21198 s
 ```
 ## 2 strategija
+- Studentų dalijimas:
+  - Jei studento galutinis rezultatų vidurkis mažesnis nei 5, jis iš konteinerio ```stud``` nukopijuojamas į to paties tipo kontenerį ```vargsiukai```;
+  - Tada tie studentai, kurių galutinis rezultatų vidurkis žemesnis už 5, panaikinami iš konteinerio ```stud```
+  - Studentų duomenys esantys konteineryje ```vargsiukai``` įrašomi į failą ```vargšiukai.txt```
+  - Studentų duomenys esantys konteineryje ```stud``` įrašomi į failą ```kietiakai.txt```.
+  Visos programos veikimo laikas - vidurkis, gaunamas paleidžiant programą 5 kartus
+- Duomenų failą sudaro 10000 studentų įrašų.
+```shell
+Programos paleidimo laikai:
+1.  4,89228 s
+2.  4,93643 s
+3.  4,90829 s
+4.  4,88885 s
+5.  4,89151 s
+
+Galutinis programos laikas:  4,903472s
+```
 ## 3 strategija
 - Studentų dalijimas:
   - Jei studentų galutinis balų vidrukis mažesnis nei 5, studento **vardas**, **pavardė** ir **galutinis balų vidrukis** įrašomi į ```vargšiukai.txt``` failą
