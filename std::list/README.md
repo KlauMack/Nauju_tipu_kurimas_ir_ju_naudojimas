@@ -9,13 +9,13 @@
 - Duomenų failą sudaro 10000 studentų įrašų.
 ```shell
 Programos paleidimo laikai:
-1.  8,743 s
-2.  8,82053 s
-3.  8,75912 s
-4.  8,81804 s
-5.  8,89198 s
+1.  0,966163 s
+2.  0,971062 s
+3.  0,985942 s
+4.  1,00205 s
+5.  1,00404 s
 
-Galutinis programos laikas: 8,806534 s
+Galutinis programos laikas: 0,9858514 s
 ```
 ## 2 strategija
 - Studentų dalijimas:
@@ -27,13 +27,13 @@ Galutinis programos laikas: 8,806534 s
 - Duomenų failą sudaro 10000 studentų įrašų.
 ```shell
 Programos paleidimo laikai:
-1.  10,4806 s
-2.  10,2125 s
-3.  10,2601 s
-4.  10,2033 s
-5.  10,2801 s
+1.  0,956486 s
+2.  0,958349 s
+3.  0,977253 s
+4.  0,972965 s
+5.  0,990045 s
 
-Galutinis programos laikas:  10,28732 s
+Galutinis programos laikas:  0.9710196 s
 ```
 ## 3 strategija
 - Studentų dalijimas:
