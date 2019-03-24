@@ -3,7 +3,6 @@
 #include <stdlib.h>
 #include <string>
 #include <vector>
-#include <deque>
 
 void galutinis (int z)
 {

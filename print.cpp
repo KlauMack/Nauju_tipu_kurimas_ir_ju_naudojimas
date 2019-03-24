@@ -23,7 +23,7 @@ void print ()
     k.open ("kietiakai.txt");
 
     std::string pasirinkti;
-    std::cout << "Ką norėtumėte matyti - vidurkį (Vid) ar medianą (Med)? "; std::cin >> pasirinkti;
+    //std::cout << "Ką norėtumėte matyti - vidurkį (Vid) ar medianą (Med)? "; std::cin >> pasirinkti;
     pasirinkti = "vid";
     if (pasirinkti == "vid" || pasirinkti == "Vid")
     {
@@ -47,23 +47,24 @@ void print ()
 
     else
     {
-        std::cout << "Vardas\t" << "Pavarde\t" << "Galutinis (Med.)" << std::endl; 
+        /*std::cout << "Vardas\t" << "Pavarde\t" << "Galutinis (Med.)" << std::endl; 
         for (int i = 0; i < 50; i++)
         {
             std::cout << "-";
         }
-        std::cout << "\n";
+        std::cout << "\n";*/
 
         for (int x = 0; x < stud.size(); x++) {
-            std::cout << stud[x].vardas << " " << stud[x].pavarde << " " << std::fixed << std::setprecision(2) << stud[x].mediana << std::endl;
+            //std::cout << stud[x].vardas << " " << stud[x].pavarde << " " << std::fixed << std::setprecision(2) << stud[x].mediana << std::endl;
             if (stud[x].mediana < 5)
                 v << stud[x].vardas << " " << stud[x].pavarde << "\t" << std::fixed << std::setprecision(2) << stud[x].mediana << "\r\n";
             else
                 k << stud[x].vardas << " " << stud[x].pavarde << "\t" << std::fixed << std::setprecision(2) << stud[x].mediana << "\r\n";
+        }
         v.close();
         k.close();
-        }
     }
+    
     auto end = std::chrono::high_resolution_clock::now();
     std::chrono::duration<double> diff = end - start;
     std::cout << "Išvedimo į du naujus failus laikas: " << diff.count() << " s\n";
