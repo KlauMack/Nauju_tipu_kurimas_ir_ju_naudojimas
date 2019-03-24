@@ -21,6 +21,10 @@ Vardas2   Pavardė2    y.yy
 ## Versijų istorija (changelog)
 ### v1.0
 
+**Koreguota:**
+
+- 
+
 ### [v0.5.3](https://github.com/KlauMack/Duomenu_apdorojimas/releases/tag/v0.5.3)
 
 **Koreguota:**
