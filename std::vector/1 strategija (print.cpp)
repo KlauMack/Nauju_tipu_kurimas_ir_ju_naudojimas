@@ -25,18 +25,15 @@ void print ()
     std::ofstream k;
     k.open ("kietiakai.txt");
 
-    int i = 0;
     for (int x = 0; x < stud.size(); x++) 
     {
         if (stud[x].vidurkis < 5)
         {
-            vargsiukai[i] = stud[x];
-            i++;
+            vargsiukai.push_back(stud[x]);
         }
         else
         {
-            kietiakai[i] = stud[x];
-            i++;
+            kietiakai.push_back(stud[x]);
         }
     }
 
