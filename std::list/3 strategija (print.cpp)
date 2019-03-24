@@ -1,0 +1,62 @@
+#include "main.h"
+#include <iostream>
+#include <stdlib.h>
+#include <iomanip>
+#include <fstream>
+#include <chrono>
+#include <iterator>
+
+void print ()
+{
+    std::list<studentas>::iterator it;
+
+    auto start = std::chrono::high_resolution_clock::now();
+
+    std::ofstream v;
+    v.open ("vargšiukai.txt");
+    std::ofstream k;
+    k.open ("kietiakai.txt");
+
+    std::string pasirinkti;
+    //std::cout << "Ką norėtumėte matyti - vidurkį (Vid) ar medianą (Med)? "; std::cin >> pasirinkti;
+    pasirinkti = "vid";
+    if (pasirinkti == "vid" || pasirinkti == "Vid")
+    {
+        for (int x = 0; x < stud.size(); x++)
+        {
+            it = std::next(stud.begin(), x);
+            if(it->vidurkis < 5)
+            {
+                v << it->vardas << " " << it->pavarde << "\t" << std::fixed << std::setprecision(2) << it->vidurkis << "\r\n";
+            }
+            else
+            {
+                k << it->vardas << " " << it->pavarde << "\t" << std::fixed << std::setprecision(2) << it->vidurkis << "\r\n";
+            } 
+        }
+        v.close();
+        k.close();
+        stud.clear();
+    }
+    else
+    {
+        for (int x = 0; x < stud.size(); x++)
+        {
+            it = std::next(stud.begin(), x);
+            if(it->mediana < 5)
+            {
+                v << it->vardas << " " << it->pavarde << "\t" << std::fixed << std::setprecision(2) << it->mediana << "\r\n";
+            }
+            else
+            {
+                k << it->vardas << " " << it->pavarde << "\t" << std::fixed << std::setprecision(2) << it->mediana << "\r\n";
+            } 
+        }
+        v.close();
+        k.close();
+        stud.clear();
+    }
+    auto end = std::chrono::high_resolution_clock::now();
+    std::chrono::duration<double> diff = end - start;
+    std::cout << "Išvedimo į du naujus failus laikas: " << diff.count() << " s\n";
+}
