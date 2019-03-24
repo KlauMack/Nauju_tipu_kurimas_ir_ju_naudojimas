@@ -4,10 +4,10 @@
 #include <iomanip>
 #include <fstream>
 #include <chrono>
-#include <deque>
+#include <vector>
 
-std::deque<studentas> vargsiukai;
-std::deque<studentas> kietiakai;
+std::vector<studentas> vargsiukai;
+std::vector<studentas> kietiakai;
 
 void print ()
 {
