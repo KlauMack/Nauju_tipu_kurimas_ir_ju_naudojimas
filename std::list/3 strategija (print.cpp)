@@ -5,11 +5,12 @@
 #include <fstream>
 #include <chrono>
 #include <iterator>
+#include <list>
 
 void print ()
 {
     std::list<studentas>::iterator it;
-
+    
     auto start = std::chrono::high_resolution_clock::now();
 
     std::ofstream v;
