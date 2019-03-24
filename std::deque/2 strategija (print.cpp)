@@ -4,8 +4,9 @@
 #include <iomanip>
 #include <fstream>
 #include <chrono>
+#include <deque>
 
-std::vector<studentas> vargsiukai;
+std::deque<studentas> vargsiukai;
 
 void print ()
 {
