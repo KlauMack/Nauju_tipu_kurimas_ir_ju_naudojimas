@@ -56,8 +56,6 @@ void print ()
         }
         v.close();
         k.close();
-        v.close();
-        k.close();
     }
     auto end = std::chrono::high_resolution_clock::now();
     std::chrono::duration<double> diff = end - start;
