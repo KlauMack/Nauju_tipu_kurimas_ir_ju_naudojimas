@@ -1,7 +1,7 @@
 #include "main.h"
 #include <iostream>
 #include <fstream>
-#include <time.h>
+#include <random>
 #include <chrono>
 
 void generate (int a)
@@ -11,7 +11,11 @@ void generate (int a)
         auto start = std::chrono::high_resolution_clock::now();
 
         std::ofstream outfile ("kursiokai.txt");
-        srand (time(NULL));
+
+        std::random_device rd;
+        std::mt19937 mt(rd());
+        std::uniform_int_distribution<int> dist (1, 10);
+
         int number;
 
         outfile << "Vardas\t" << "Pavarde\t";
@@ -26,7 +30,7 @@ void generate (int a)
             outfile << "Vardas" << x << "\t" << "Pavarde" << x << "\t";
             for (int y = 1; y <= 6; y++)
             {
-                number = rand() % 10 + 1;
+                number = dist(mt);
                 outfile << number << "\t";
             }
             outfile << "\n";
@@ -35,7 +39,7 @@ void generate (int a)
         outfile << "Vardas" << a << " " << "Pavarde" << a << " ";
         for (int y = 1; y <= 6; y++)
         {
-            number = rand() % 10 + 1;
+            number = dist(mt);
             outfile << number << "\t";
         }
         outfile.close();

@@ -4,16 +4,11 @@
 #include <iomanip>
 #include <fstream>
 #include <chrono>
+#include <algorithm>
 
 void print ()
 {
-    for (int x = 0; x < stud.size() - 1; x++) {
-        for (int y = x + 1; y < stud.size(); y++) {
-             if (stud[x].vardas > stud[y].vardas) {
-                    std::swap(stud[x], stud[y]);
-            }
-        }
-    }
+    std::sort(stud.begin(), stud.end(), compareByLetter);
 
     auto start = std::chrono::high_resolution_clock::now();
 
@@ -44,7 +39,6 @@ void print ()
         v.close();
         k.close();
     }
-
     else
     {
         /*std::cout << "Vardas\t" << "Pavarde\t" << "Galutinis (Med.)" << std::endl; 

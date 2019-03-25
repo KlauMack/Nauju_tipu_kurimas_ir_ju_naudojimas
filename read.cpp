@@ -18,8 +18,8 @@ void read ()
     input = 't';
     if(input == 't') {
         //std::cout << "Pasirinkite sugeneruoti 10, 100, 1000, 10000, 100000 studentų duomenų įrašų: "; std::cin >> genNumber;
-        genNumber = 100;
-        //generate (genNumber);
+        genNumber = 10000;
+        generate (genNumber);
 
         std::ifstream r ("kursiokai.txt");
         std::string line;

@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include <string>
 #include <vector>
+#include <algorithm>
 
 void galutinis (int z)
 {
@@ -23,16 +24,7 @@ void galutinis (int z)
         stud[z].vidurkis = 0.4 *  Vidurkis + 0.6 * stud[z].egz;
 
         stud[z].nd.push_back(stud[z].egz);
-        for (int x = 0; x < stud[z].nd.size() - 1; x++)
-        {
-            for (int y = x + 1; y < stud[z].nd.size(); y++)
-            {
-                if (stud[z].nd[x] > stud[z].nd[y])
-                {
-                    std::swap (stud[z].nd[x], stud[z].nd[y]);
-                }
-            }
-        }
+        sort(stud[z].nd.begin(), stud[z].nd.end());
 
         if(stud[z].nd.size() % 2 == 0)
         {
