@@ -21,10 +21,40 @@ Vardas2   Pavardė2    y.yy
 ## Versijų istorija (changelog)
 ### v1.0
 
+- Programos veikimo sparta prieš koreguojant jos dalis: 2,18899 s.
+
 **Koreguota:**
 
-- 
+- Pakeistas studento **vardo** rūšiavimo algortimas, pridėta lyginimo funkcija (```compareByLetter```) ir panadutoas ```std::sort``` algoritmas
+  - Programos sparta: 0,049468 s.
+```shell
+for (int x = 0; x < stud.size() - 1; x++)         
+{
+  for (int y = x + 1; y < stud.size(); y++)
+  {  
+    if (stud[x].vardas > stud[y].vardas)
+    {
+      std::swap(stud[x], stud[y]);
+    }
+  }
+}
 
+                    ↓
+                    
+bool compareByLetter(const studentas &a, const studentas &b)
+{
+    return a.vardas < b.vardas;
+}
+------------------------------------------------------------
+std::sort(stud.begin(), stud.end(), compareByLetter);
+```
+- Pakeistas atsitiktinių skaičių generavimo algoritmas:
+  - Programos sparta: 0,126222 s.
+```shell
+std::random_device rd;
+  std::mt19937 mt(rd());
+  std::uniform_int_distribution<int> dist (1, 10);
+```
 ### [v0.5.3](https://github.com/KlauMack/Duomenu_apdorojimas/releases/tag/v0.5.3)
 
 **Koreguota:**
