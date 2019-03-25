@@ -1,0 +1,72 @@
+#include "main.h"
+#include <iostream>
+#include <stdlib.h>
+#include <iomanip>
+#include <fstream>
+#include <chrono>
+#include <list>
+
+std::list<studentas> vargsiukai;
+std::list<studentas> kietiakai;
+
+void print ()
+{
+    std::list<studentas>::iterator it;
+    std::list<studentas>::iterator it1;
+    std::list<studentas>::iterator it2;
+
+    auto start = std::chrono::high_resolution_clock::now();
+
+    std::ofstream v;
+    v.open ("vargšiukai.txt");
+    std::ofstream k;
+    k.open ("kietiakai.txt");
+
+    for (int x = 0; x < stud.size(); x++) 
+    {
+        it = std::next(stud.begin(), x);
+        if (it->vidurkis < 5)
+        {
+            vargsiukai.push_back(*it);
+        }
+        else
+        {
+            kietiakai.push_back(*it);
+        }
+    }
+
+    std::string pasirinkti;
+    //std::cout << "Ką norėtumėte matyti - vidurkį (Vid) ar medianą (Med)? "; std::cin >> pasirinkti;
+    pasirinkti = "vid";
+    if (pasirinkti == "vid" || pasirinkti == "Vid")
+    {
+        for (int a = 0; a < vargsiukai.size(); a++) {
+            it1 = std::next(vargsiukai.begin(), a);
+            v << it1->vardas << " " << it1->pavarde << "\t" << std::fixed << std::setprecision(2) << it1->vidurkis << "\r\n";
+        }
+
+        for (int b = 0; b < kietiakai.size(); b++) {
+            it2 = std::next(kietiakai.begin(), b);
+            k << it2->vardas << " " << it2->pavarde << "\t" << std::fixed << std::setprecision(2) << it2->vidurkis << "\r\n";
+        }
+        v.close();
+        k.close();
+    }
+    else
+    {
+        for (int a = 0; a < vargsiukai.size(); a++) {
+            it1 = std::next(vargsiukai.begin(), a);
+            v << it1->vardas << " " << it1->pavarde << "\t" << std::fixed << std::setprecision(2) << it1->vidurkis << "\r\n";
+        }
+
+        for (int b = 0; b < kietiakai.size(); b++) {
+            it2 = std::next(kietiakai.begin(), b);
+            k << it2->vardas << " " << it2->pavarde << "\t" << std::fixed << std::setprecision(2) << it2->vidurkis << "\r\n";
+        }
+        v.close();
+        k.close();
+    }
+    auto end = std::chrono::high_resolution_clock::now();
+    std::chrono::duration<double> diff = end - start;
+    std::cout << "Išvedimo į du naujus failus laikas: " << diff.count() << " s\n";
+}
