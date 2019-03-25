@@ -1,6 +1,5 @@
-#include <vector>
 #include <string>
-#include <deque>
+#include <vector>
 
 #ifndef HEADER_H
 #define HEADER_H
@@ -13,11 +12,11 @@ struct studentas
     double vidurkis, mediana;
 };
 
-extern std::deque<studentas> stud;
+extern std::vector<studentas> stud;
 
 void print ();
 void read ();
 void galutinis (int z);
 void generate (int a);
-
+bool compareByLetter(const studentas &a, const studentas &b);
 #endif
