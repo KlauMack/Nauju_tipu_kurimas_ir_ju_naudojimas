@@ -14,7 +14,7 @@ Vardas2   Pavardė2    y.yy
 ```
 ## Įdiegimas (Unix kompiuteryje) naudojant `gcc`kompiliatorių 
 
-- `git clone https://github.com/KlauMack/Duomenu_apdorojimas.git`
+- `git clone https://github.com/KlauMack/Duomenu-apdorojimas.git`
 - `cd Duomenu_apdorojimas`
 - `g++ -std=c++11 main.o galutinis.o print.o read.o generate.o -o apdorojimas`
 - `./apdorojimas`
