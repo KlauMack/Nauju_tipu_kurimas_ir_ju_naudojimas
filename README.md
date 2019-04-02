@@ -16,7 +16,7 @@ Vardas2   Pavardė2    y.yy
 
 - `git clone https://github.com/KlauMack/Duomenu-apdorojimas.git`
 - `cd Duomenu_apdorojimas`
-- `g++ -std=c++11 main.o galutinis.o print.o read.o generate.o -o apdorojimas`
+- `g++ -std=c++11 main.o galutinis.o print.o read.o generate.o compareByLetter.o -o apdorojimas`
 - `./apdorojimas`
 ## Versijų istorija (changelog)
 ### v1.0
