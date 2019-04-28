@@ -23,4 +23,9 @@ public:
     void sortND();
 };
 
+bool operator <(const Student & s1, const Student & s2)
+{
+	return s1.getVardas() < s2.getVardas();
+}
+
 #endif
