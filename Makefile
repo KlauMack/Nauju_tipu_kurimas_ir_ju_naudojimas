@@ -1,29 +1,17 @@
 CXX = g++
 CC = gcc
 
-all:	main.o galutinis.o print.o read.o generate.o compareByLetter.o
-	g++ main.o galutinis.o print.o read.o generate.o compareByLetter.o -o apdorojimas
+all:	main.o student.o
+	g++ main.o student.o -o tipas
 
-main.o: main.cpp main.h
+main.o: main.cpp functions.h
 	g++ -c main.cpp
 
-galutinis.o: galutinis.cpp
-	g++ -c galutinis.cpp
-
-print.o: print.cpp
-	g++ -c print.cpp
-
-read.o: read.cpp
-	g++ -c read.cpp
-
-generate.o: generate.cpp
-	g++ -c generate.cpp
-
-compareByLetter.o: compareByLetter.cpp
-	g++ -c compareByLetter.cpp
+student.o: student.cpp  student.h
+	g++ -c student.cpp
 
 test:	all
-	./apdorojimas
+	./tipas
 
 clean:
-	rm -f *.o apdorojimas
+	rm -f *.o tipas
