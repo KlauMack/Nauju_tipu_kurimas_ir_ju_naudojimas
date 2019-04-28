@@ -1,4 +1,4 @@
-# Duomenų apdorojimas
+# Naujų tipų kūrimas ir jų naudojimas
 ## Programos tikslas
 - Programa nuskaito šiuos studentų duomenis:
   - **vardą** ir **pavardę**
@@ -14,10 +14,10 @@ Vardas2   Pavardė2    y.yy
 ```
 ## Įdiegimas (Unix kompiuteryje) naudojant `gcc`kompiliatorių 
 
-- `git clone https://github.com/KlauMack/Duomenu-apdorojimas.git`
-- `cd Duomenu_apdorojimas`
+- `git clone https://github.com/KlauMack/Nauju_tipu_kurimas_ir_ju_naudojimas.git`
+- `cd Nauju_tipu_kurimas_ir_ju_naudojimas`
 - `make`
-- `./apdorojimas`
+- `./tipas`
 ## Versijų istorija (changelog)
 ### v1.0
 
