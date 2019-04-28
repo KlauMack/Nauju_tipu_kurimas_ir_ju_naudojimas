@@ -11,10 +11,10 @@ int main()
     std::vector<Student> students;
 
     std::string input1 = "taip";
-    //std::cout << "Ar norite nuskaityti duomenis iš failo (kursiokai.txt)? (taip/ne) "; std::cin >> input1;
+    std::cout << "Ar norite nuskaityti duomenis iš failo (kursiokai.txt)? (taip/ne) "; std::cin >> input1;
     if(input1 == "taip")
     {
-        int count = 10000;
+        int count = 100000;
         //std::cout << "Kiek studentų norėtumėte sugeneruoti? "; std::cin >> count;
         if (count == 0)
         {
@@ -40,9 +40,9 @@ int main()
         std::cerr << "Prašome pasirinkti taip arba ne" << std::endl;
         exit(1);
     }
-    
-    std::sort(std::begin(students), std::end(students), compareNames);
 
+    std::sort(students.begin(), students.end(), operator<);
+    
     for(int i = 0; i < students.size(); i++)
     {
         students[i].sortND();
