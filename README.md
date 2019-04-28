@@ -19,6 +19,27 @@ Vardas2   Pavardė2    y.yy
 - `make`
 - `./tipas`
 ## Versijų istorija (changelog)
+### v1.2
+
+**Koreguota:**
+
+- `student.h` faile pridėta operatorius (operator<)
+```shell
+bool operator <(const Student & s1, const Student & s2)
+{
+	return s1.getVardas() < s2.getVardas();
+}
+```
+- `main.cpp` faile panaudota `std::sort` funkcija
+```shell
+std::sort(students.begin(), students.end(), operator<);
+```
+- Visos programos veikimo laikas (su 100000 studentų įrašų)
+```shell
+v1.1: 2,14142 s
+v1.2: 4,66906 s
+```
+
 ### v1.1
 
 **Koreguota:**
