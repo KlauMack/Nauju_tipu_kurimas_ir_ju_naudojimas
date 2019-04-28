@@ -19,6 +19,34 @@ Vardas2   Pavardė2    y.yy
 - `make`
 - `./tipas`
 ## Versijų istorija (changelog)
+### v1.1
+
+**Koreguota:**
+
+- Sumažintas failų kiekis:
+  - ```student.h``` failas saugo *Student* klasę
+  - ```functions.h``` failas saugo su klase nesusijusias funkcijas
+- Versijų v1.0 ir v1.1 programos spartos lyginimas (programa leidžiama 5 kartus ir gaunamas vidurkis):
+```shell
+Tikrinama su 10000 studentų
+
+v1.0: 0,0623813 s
+v1.1: 0,21713 s
+```
+```shell
+Tikrinama su 100000 studentų
+
+v1.0: 0,752753 s
+v1.1: 2,14142 s
+```
+- Visos programos veikimo laikas priklausomai nuo kompiliatoriaus optimizavimo lygio (su 100000 studentų įrašais):
+```shell
+default: 2,28562 s
+Flag O1: 2,26381 s
+Flag O2: 2,2869 s
+Flag O3: 2,3517 s
+```
+
 ### v1.0
 
 - Programos veikimo sparta prieš koreguojant jos dalis: 2,18899 s.
