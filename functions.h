@@ -59,7 +59,7 @@ void generate(int count)
     std::cout << "Failo kurimo laikas sekundemis: " << diff.count() << " s\n";*/
 }
 
-void readGenerated(std::vector<Student>& newVec)
+void readGenerated(std::vector<Studentas>& newVec)
 {
     std::ifstream inFile ("kursiokai.txt");
     std::string line;
@@ -96,7 +96,7 @@ void readGenerated(std::vector<Student>& newVec)
         }
         inFile >> exam;
 
-        Student newStudent(name, surname, temp, exam);
+        Studentas newStudent(name, surname, temp, exam);
         newVec.push_back(newStudent);
 
         temp.clear();
@@ -108,7 +108,7 @@ void readGenerated(std::vector<Student>& newVec)
     inFile.close();
 }
 
-void readUser(std::vector<Student>& newVec)
+void readUser(std::vector<Studentas>& newVec)
 {
     std::random_device rd;
     std::mt19937 mt(rd());
@@ -164,7 +164,7 @@ void readUser(std::vector<Student>& newVec)
             exit(1);
         }
 
-        Student newStudent(name, surname, temp, exam);
+        Studentas newStudent(name, surname, temp, exam);
         newVec.push_back(newStudent);
 
         temp.clear();
@@ -174,12 +174,7 @@ void readUser(std::vector<Student>& newVec)
     }
 }
 
-bool compareNames(const Student& s1, const Student& s2)
-{
-    return s1.getVardas() < s2.getVardas();
-}
-
-void vidurkis(const std::vector<Student>& newVec)
+void vidurkis(const std::vector<Studentas>& newVec)
 {
     std::ofstream outFile1;
     outFile1.open("vargšiukai.txt");
@@ -214,7 +209,7 @@ void vidurkis(const std::vector<Student>& newVec)
     outFile2.close();
 }
 
-void mediana(const std::vector<Student>& newVec)
+void mediana(const std::vector<Studentas>& newVec)
 {
     std::ofstream outFile1;
     outFile1.open("vargšiukai.txt");
@@ -253,7 +248,7 @@ void mediana(const std::vector<Student>& newVec)
     outFile2.close();
 }
 
-void displayVector(const std::vector<Student>& newVec)
+void displayVector(const std::vector<Studentas>& newVec)
 {
     unsigned int vecSize = newVec.size();
 
