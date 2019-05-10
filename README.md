@@ -19,6 +19,33 @@ Vardas2   Pavardė2    y.yy
 - `make`
 - `./tipas`
 ## Versijų istorija (changelog)
+### v1.5
+
+**Pridėta:**
+
+- **Derived** klasė `Studentas`:
+`class Studentas : public StudentBase`
+
+**Koreguota:**
+
+- Klasė `Students` tapo **base** klase `StudentBase`
+- Programoje kuriami objektai ir kviečiamos funkcijos iš išvestinės `Studentas` klasės:
+```shell
+std::vector<Studentas> students;
+
+Studentas newStudent(name, surname, temp, exam);
+
+bool operator <(Studentas & s1, Studentas & s2)
+{
+	return s1.getVardas() < s2.getVardas();
+}
+```
+- Programos veikimo laikas:
+```shell
+v1.2: 4,66906 s
+v1.5: 2.22834 s
+```
+
 ### v1.2
 
 **Koreguota:**
