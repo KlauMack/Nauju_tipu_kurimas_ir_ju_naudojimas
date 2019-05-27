@@ -19,6 +19,131 @@ Vardas2   Pavardė2    y.yy
 - `make`
 - `./tipas`
 ## Versijų istorija (changelog)
+### v2.0
+
+**Pridėta:**
+
+# Google Test
+- `./runTest` failo sukūrimo instrukcijos:
+   - ```cmake CMakeLists.txt```
+   - ```make```
+   - ```./runTests```
+- Jei iškyla nesklandumų su programos paleidimu, galite vykdyti šias instrukcijas (`Ubuntu`):
+   - Įdiekite `gtest` plėtros paketą:
+`sudo apt-get install libgtest-dev`
+   - Įdiegti `source` failai turėtų atsirasti `/usr/src/gtest` vietoje. Tuomet, įdiekite `cmake`:
+`sudo apt-get install cmake`
+`cd /usr/src/gtest`
+`sudo cmake CMakeLists.txt`
+`sudo make`
+   - Nukopijuokite `libgtest.a` ir `libgtest_main.a` į savo `/usr/lib` aplankalą:
+`sudo cp *.a /usr/lib`
+   - Toliau vykdykite `./runTest` failo sukūrimo instrukcijas
+- **`CMakeLists.txt`:**
+```ruby
+cmake_minimum_required(VERSION 2.6)
+ 
+# Locate GTest
+find_package(GTest REQUIRED)
+include_directories(${GTEST_INCLUDE_DIRS})
+ 
+# Link runTests with what we want to test and the GTest and pthread library
+add_executable(runTests test/test_student.cpp)
+target_link_libraries(runTests ${GTEST_LIBRARIES} pthread)
+target_link_libraries(runTests ${GTEST_LIBRARIES} gtest_main pthread)
+```
+- **`test_student.cpp:`**
+```ruby
+TEST (StudentTest, testClass)
+{
+    std::string name = "Klaudijus";
+    std::string surname = "Mackonis";
+    std::vector<double> temp {1, 2, 3};
+    double exam = 4;
+    Studentas newStudent(name, surname, temp, exam);
+
+    EXPECT_EQ(newStudent.getVardas(), "Klaudijus");
+    EXPECT_EQ(newStudent.getPavarde(), "Mackonis");
+    EXPECT_EQ(newStudent.getSizeOfNd(), 3);
+    EXPECT_EQ(newStudent.getEgz(), 4);
+```
+- Testuojama, ar `Studentas` klasė grąžina tikėtinus rezultatus (vardą, pavardę, namų darbų rezultatų vekotriaus dydį bei egzamino rezultatą)
+```ruby
+TEST (OperatorTest, testOperators)
+{
+    std::vector<Studentas> students;
+
+    std::string name = "Klaudijus";
+    std::string surname = "Mackonis";
+    std::vector<double> temp {1, 2, 3};
+    double exam = 4;
+    Studentas newStudent(name, surname, temp, exam);
+    students.push_back(newStudent);
+
+    name = "Mackonis";
+    surname = "Klaudijus";
+    temp = {2, 3, 4};
+    exam = 5;
+    Studentas newStudent1(name, surname, temp, exam);
+    students.push_back(newStudent1);
+
+    EXPECT_FALSE(operator>(students[0].getVardas(), students[1].getVardas()));
+    EXPECT_FALSE(operator<(students[1].getVardas(), students[0].getVardas()));
+}
+```
+- Testuojami `overloaded` operatoriai pagal duotus studentų vardus.
+```ruby
+int main (int argc, char **argv)
+{
+    testing::InitGoogleTest(&argc, argv);
+    return RUN_ALL_TESTS();
+}
+```
+- `main` funkcija
+
+**Rezultatai:**
+```Ruby
+[==========] Running 2 tests from 2 test cases.
+[----------] Global test environment set-up.
+[----------] 1 test from StudentTest
+[ RUN      ] StudentTest.testClass
+[       OK ] StudentTest.testClass (0 ms)
+[----------] 1 test from StudentTest (0 ms total)
+
+[----------] 1 test from OperatorTest
+[ RUN      ] OperatorTest.testOperators
+[       OK ] OperatorTest.testOperators (0 ms)
+[----------] 1 test from OperatorTest (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 2 tests from 2 test cases ran. (2 ms total)
+[  PASSED  ] 2 tests.
+```
+
+### v1.51
+
+**Pridėta:**
+
+- 3 operatoriai, tačiau nepanaudoti programoje
+```ruby
+bool operator >(Studentas & s1, Studentas & s2)
+{
+	return s1.getVardas() < s2.getVardas();
+}
+```
+```ruby
+bool operator <=(Studentas & s1, Studentas & s2)
+{
+	return s1.getVardas() < s2.getVardas();
+}
+```
+```ruby
+bool operator >=(Studentas & s1, Studentas & s2)
+{
+	return s1.getVardas() < s2.getVardas();
+}
+```
+
 ### v1.5
 
 **Pridėta:**
