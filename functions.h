@@ -1,3 +1,6 @@
+/*! \file functions.h
+    Failas, saugantis funkcijas, nesusijusias su klasėmis.
+*/
 #ifndef FUNCTIONS_H
 #define FUNCTIONS_H
 
@@ -10,6 +13,8 @@
 #include <string>
 #include <vector>
 #include <algorithm>
+
+/*! Funkcija generuoti "kursiokai.txt" failą */
 
 void generate(int count)
 {
@@ -59,6 +64,8 @@ void generate(int count)
     std::cout << "Failo kurimo laikas sekundemis: " << diff.count() << " s\n";*/
 }
 
+/*! Funkcija, perskaityti "kursiokai.txt" failą */
+
 void readGenerated(std::vector<Studentas>& newVec)
 {
     std::ifstream inFile ("kursiokai.txt");
@@ -107,6 +114,8 @@ void readGenerated(std::vector<Studentas>& newVec)
 
     inFile.close();
 }
+
+/*! Funkcija, išsaugoti vartotojo įvestus duomenis */
 
 void readUser(std::vector<Studentas>& newVec)
 {
@@ -174,6 +183,8 @@ void readUser(std::vector<Studentas>& newVec)
     }
 }
 
+/*! Funkcija, skaičiuojanti vidurkį ir išvedanti duomenis į "kietiakai.txt" ir "vargšiukai.txt" failus */
+
 void vidurkis(const std::vector<Studentas>& newVec)
 {
     std::ofstream outFile1;
@@ -208,6 +219,8 @@ void vidurkis(const std::vector<Studentas>& newVec)
     outFile1.close();
     outFile2.close();
 }
+
+/*! Funkcija, skaičiuojanti medianą ir išvedanti duomenis į "kietiakai.txt" ir "vargšiukai.txt" failus */
 
 void mediana(const std::vector<Studentas>& newVec)
 {
@@ -247,6 +260,8 @@ void mediana(const std::vector<Studentas>& newVec)
     outFile1.close();
     outFile2.close();
 }
+
+/*! Funkcija, išvedanti klasės vektoriaus turinį */
 
 void displayVector(const std::vector<Studentas>& newVec)
 {

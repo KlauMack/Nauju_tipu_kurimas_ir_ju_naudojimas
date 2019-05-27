@@ -37,22 +37,22 @@ public:
     void sortND();
 };
 
-bool operator <(Studentas & s1, Studentas & s2)
+bool operator <(Studentas s1, Studentas s2)
 {
 	return s1.getVardas() < s2.getVardas();
 }
 
-bool operator >(Studentas & s1, Studentas & s2)
+bool operator >(Studentas s1, Studentas s2)
 {
 	return s1.getVardas() < s2.getVardas();
 }
 
-bool operator <=(Studentas & s1, Studentas & s2)
+bool operator <=(Studentas s1, Studentas s2)
 {
 	return s1.getVardas() < s2.getVardas();
 }
 
-bool operator >=(Studentas & s1, Studentas & s2)
+bool operator >=(Studentas s1, Studentas s2)
 {
 	return s1.getVardas() < s2.getVardas();
 }
