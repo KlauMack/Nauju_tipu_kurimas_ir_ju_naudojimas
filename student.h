@@ -1,9 +1,14 @@
+/*! \file student.h
+    Failas saugantis Base ir Derived klases.
+*/
 #ifndef STUDENT_H
 #define STUDENT_H
 
 #include <string>
 #include <vector>
 #include <algorithm>
+
+/*! Base klasė "StudentBase" */
 
 class StudentBase
 {
@@ -15,6 +20,8 @@ protected:
     StudentBase() : egz_(0) {}
     StudentBase(std::string, std::string, std::vector<double>&, double);
 };
+
+/*! Derived klasė "Studentas" */
 
 class Studentas : public StudentBase
 {
@@ -31,6 +38,21 @@ public:
 };
 
 bool operator <(Studentas & s1, Studentas & s2)
+{
+	return s1.getVardas() < s2.getVardas();
+}
+
+bool operator >(Studentas & s1, Studentas & s2)
+{
+	return s1.getVardas() < s2.getVardas();
+}
+
+bool operator <=(Studentas & s1, Studentas & s2)
+{
+	return s1.getVardas() < s2.getVardas();
+}
+
+bool operator >=(Studentas & s1, Studentas & s2)
 {
 	return s1.getVardas() < s2.getVardas();
 }
