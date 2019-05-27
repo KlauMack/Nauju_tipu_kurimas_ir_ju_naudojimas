@@ -11,11 +11,11 @@ int main()
     std::vector<Studentas> students;
 
     std::string input1 = "taip";
-    std::cout << "Ar norite nuskaityti duomenis iš failo (kursiokai.txt)? (taip/ne) "; std::cin >> input1;
+    //std::cout << "Ar norite nuskaityti duomenis iš failo (kursiokai.txt)? (taip/ne) "; std::cin >> input1;
     if(input1 == "taip")
     {
         int count = 100000;
-        std::cout << "Kiek studentų norėtumėte sugeneruoti? "; std::cin >> count;
+        //std::cout << "Kiek studentų norėtumėte sugeneruoti? "; std::cin >> count;
         if (count == 0)
         {
             std::cerr << "Prašome sugeneruoti nors vieną studentą" << std::endl;
@@ -49,7 +49,7 @@ int main()
     }
 
     std::string input2 = "vid";
-    std::cout << "Ką norėtumėte matyti - vidurkį (vid) ar medianą (med)? (vid/med) "; std::cin >> input2;
+    //std::cout << "Ką norėtumėte matyti - vidurkį (vid) ar medianą (med)? (vid/med) "; std::cin >> input2;
     if (input2 == "vid")
     {
         vidurkis(students);

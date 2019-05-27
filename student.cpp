@@ -1,3 +1,6 @@
+/*! \file student.cpp
+    Klasių realizacijos failas.
+*/
 #include "student.h"
 
 StudentBase::StudentBase(std::string vardas, std::string pavarde, std::vector<double>& ND, double egzaminas)
