@@ -1,0 +1,32 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/mnt/c/Users/klaud/OneDrive/Stalinis kompiuteris/Uni/OP/Naujų tipų kūrimas ir jų naudojimas/UnitTesting/include/student.h
+string
+-
+vector
+-
+algorithm
+-
+
+/mnt/c/Users/klaud/OneDrive/Stalinis kompiuteris/Uni/OP/Naujų tipų kūrimas ir jų naudojimas/UnitTesting/src/student.cpp
+../include/student.h
+/mnt/c/Users/klaud/OneDrive/Stalinis kompiuteris/Uni/OP/Naujų tipų kūrimas ir jų naudojimas/UnitTesting/include/student.h
+
+/mnt/c/Users/klaud/OneDrive/Stalinis kompiuteris/Uni/OP/Naujų tipų kūrimas ir jų naudojimas/UnitTesting/test/test_student.cpp
+gtest/gtest.h
+-
+../include/student.h
+/mnt/c/Users/klaud/OneDrive/Stalinis kompiuteris/Uni/OP/Naujų tipų kūrimas ir jų naudojimas/UnitTesting/include/student.h
+../src/student.cpp
+/mnt/c/Users/klaud/OneDrive/Stalinis kompiuteris/Uni/OP/Naujų tipų kūrimas ir jų naudojimas/UnitTesting/src/student.cpp
+vector
+-
+string
+-
+
