@@ -5,8 +5,8 @@
 #define STUDENT_H
 
 #include <string>
-#include <vector>
 #include <algorithm>
+#include "Vector.h"
 
 /*! Base klasė "StudentBase" */
 
@@ -15,10 +15,10 @@ class StudentBase
 protected:
     std::string vardas_;
     std::string pavarde_;
-    std::vector<double> nd_;
+    Vector<double> nd_;
     double egz_;
     StudentBase() : egz_(0) {}
-    StudentBase(std::string, std::string, std::vector<double>&, double);
+    StudentBase(std::string, std::string, Vector<double>&, double);
 };
 
 /*! Derived klasė "Studentas" */
@@ -26,7 +26,7 @@ protected:
 class Studentas : public StudentBase
 {
 public:
-    Studentas(std::string vardas, std::string pavarde, std::vector<double>& ND, double egzaminas) : 
+    Studentas(std::string vardas, std::string pavarde, Vector<double>& ND, double egzaminas) : 
         StudentBase(vardas, pavarde, ND, egzaminas) {}
 
     std::string getVardas() const;
@@ -37,22 +37,22 @@ public:
     void sortND();
 };
 
-bool operator <(Studentas s1, Studentas s2)
+inline bool operator <(Studentas s1, Studentas s2)
 {
 	return s1.getVardas() < s2.getVardas();
 }
 
-bool operator >(Studentas s1, Studentas s2)
+inline bool operator >(Studentas s1, Studentas s2)
 {
 	return s1.getVardas() < s2.getVardas();
 }
 
-bool operator <=(Studentas s1, Studentas s2)
+inline bool operator <=(Studentas s1, Studentas s2)
 {
 	return s1.getVardas() < s2.getVardas();
 }
 
-bool operator >=(Studentas s1, Studentas s2)
+inline bool operator >=(Studentas s1, Studentas s2)
 {
 	return s1.getVardas() < s2.getVardas();
 }
