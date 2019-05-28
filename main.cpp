@@ -11,11 +11,11 @@ int main()
     std::vector<Studentas> students;
 
     std::string input1 = "taip";
-    //std::cout << "Ar norite nuskaityti duomenis iš failo (kursiokai.txt)? (taip/ne) "; std::cin >> input1;
+    std::cout << "Ar norite nuskaityti duomenis iš failo (kursiokai.txt)? (taip/ne) "; std::cin >> input1;
     if(input1 == "taip")
     {
         int count = 100000;
-        //std::cout << "Kiek studentų norėtumėte sugeneruoti? "; std::cin >> count;
+        std::cout << "Kiek studentų norėtumėte sugeneruoti? "; std::cin >> count;
         if (count == 0)
         {
             std::cerr << "Prašome sugeneruoti nors vieną studentą" << std::endl;
@@ -41,20 +41,34 @@ int main()
         exit(1);
     }
 
-    std::sort(students.begin(), students.end(), operator<);
+    std::string input2;
+
+    std::cout << "Kaip norėtumėte surušiuoti studentų sąrašą - pagal vardą (vardas) ar pagal pavardę (pavarde)? (vardas/pavarde) "; std::cin >> input2;
+    
+    if (input2 == "vardas")
+        std::sort(students.begin(), students.end(), operator<);
+    else
+    {
+        std::sort(students.begin(), students.end(), operator>);
+    }
+    
+    for(int i = 0; i < students.size(); i++)
+    {
+        students[i].sortND();
+    }
     
     for(int i = 0; i < students.size(); i++)
     {
         students[i].sortND();
     }
 
-    std::string input2 = "vid";
-    //std::cout << "Ką norėtumėte matyti - vidurkį (vid) ar medianą (med)? (vid/med) "; std::cin >> input2;
-    if (input2 == "vid")
+    std::string input3 = "vid";
+    std::cout << "Ką norėtumėte matyti - vidurkį (vid) ar medianą (med)? (vid/med) "; std::cin >> input3;
+    if (input3 == "vid")
     {
         vidurkis(students);
     }
-    else if (input2 == "med")
+    else if (input3 == "med")
     {
         mediana(students);
     }
