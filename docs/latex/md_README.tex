@@ -1,0 +1,443 @@
+\subsection*{Programos tikslas}
+
+
+\begin{DoxyItemize}
+\item Programa nuskaito šiuos studentų duomenis\+:
+\begin{DoxyItemize}
+\item {\bfseries vardą} ir {\bfseries pavardę}
+\item {\itshape n} atliktų {\bfseries namų darbų} ({\ttfamily nd}) rezultatus (10-\/balėje sistemoje) ir egzamino ({\ttfamily egz}) rezultatą.
+\end{DoxyItemize}
+\item Iš šių duomenų programa suskaičiuoja galutinį balą. \#\# Išvedimo pavyzdys\+: 
+\begin{DoxyCode}
+Vardas    Pavardė     Galutinis
+----------------------------
+Vardas1   Pavardė1    x.xx
+Vardas2   Pavardė2    y.yy
+...
+\end{DoxyCode}
+ \subsection*{Įdiegimas (Unix kompiuteryje) naudojant {\ttfamily gcc}kompiliatorių}
+\end{DoxyItemize}
+
+
+\begin{DoxyItemize}
+\item {\ttfamily git clone \href{https://github.com/KlauMack/Nauju_tipu_kurimas_ir_ju_naudojimas.git}{\tt https\+://github.\+com/\+Klau\+Mack/\+Nauju\+\_\+tipu\+\_\+kurimas\+\_\+ir\+\_\+ju\+\_\+naudojimas.\+git}}
+\item {\ttfamily cd Nauju\+\_\+tipu\+\_\+kurimas\+\_\+ir\+\_\+ju\+\_\+naudojimas}
+\item {\ttfamily make}
+\item {\ttfamily ./tipas} \subsection*{Versijų istorija (changelog)}
+\end{DoxyItemize}
+
+\subsubsection*{v2.\+0}
+
+{\bfseries Pridėta\+:}
+
+\section*{Google Test}
+
+
+\begin{DoxyItemize}
+\item {\ttfamily ./run\+Test} failo sukūrimo instrukcijos\+:
+\begin{DoxyItemize}
+\item {\ttfamily cmake C\+Make\+Lists.\+txt}
+\item {\ttfamily make}
+\item {\ttfamily ./run\+Tests}
+\end{DoxyItemize}
+\item Jei iškyla nesklandumų su programos paleidimu, galite vykdyti šias instrukcijas ({\ttfamily Ubuntu})\+:
+\begin{DoxyItemize}
+\item Įdiekite {\ttfamily gtest} plėtros paketą\+: {\ttfamily sudo apt-\/get install libgtest-\/dev}
+\item Įdiegti {\ttfamily source} failai turėtų atsirasti {\ttfamily /usr/src/gtest} vietoje. Tuomet, įdiekite {\ttfamily cmake}\+: {\ttfamily sudo apt-\/get install cmake} {\ttfamily cd /usr/src/gtest} {\ttfamily sudo cmake C\+Make\+Lists.\+txt} {\ttfamily sudo make}
+\item Nukopijuokite {\ttfamily libgtest.\+a} ir {\ttfamily libgtest\+\_\+main.\+a} į savo {\ttfamily /usr/lib} aplankalą\+: {\ttfamily sudo cp $\ast$.a /usr/lib}
+\item Toliau vykdykite {\ttfamily ./run\+Test} failo sukūrimo instrukcijas
+\end{DoxyItemize}
+\item $\ast$$\ast${\ttfamily C\+Make\+Lists.\+txt}\+:$\ast$$\ast$ 
+\begin{DoxyCode}
+cmake\_minimum\_required(VERSION 2.6)
+
+# Locate GTest
+find\_package(GTest REQUIRED)
+include\_directories($\{GTEST\_INCLUDE\_DIRS\})
+
+# Link runTests with what we want to test and the GTest and pthread library
+add\_executable(runTests test/test\_student.cpp)
+target\_link\_libraries(runTests $\{GTEST\_LIBRARIES\} pthread)
+target\_link\_libraries(runTests $\{GTEST\_LIBRARIES\} gtest\_main pthread)
+\end{DoxyCode}
+
+\item $\ast$$\ast${\ttfamily test\+\_\+student.\+cpp\+:}$\ast$$\ast$ 
+\begin{DoxyCode}
+TEST (StudentTest, testClass)
+\{
+    std::string name = "Klaudijus";
+    std::string surname = "Mackonis";
+    std::vector<double> temp \{1, 2, 3\};
+    double exam = 4;
+    Studentas newStudent(name, surname, temp, exam);
+
+    EXPECT\_EQ(newStudent.getVardas(), "Klaudijus");
+    EXPECT\_EQ(newStudent.getPavarde(), "Mackonis");
+    EXPECT\_EQ(newStudent.getSizeOfNd(), 3);
+    EXPECT\_EQ(newStudent.getEgz(), 4);
+\end{DoxyCode}
+
+\item Testuojama, ar {\ttfamily \hyperlink{classStudentas}{Studentas}} klasė grąžina tikėtinus rezultatus (vardą, pavardę, namų darbų rezultatų vekotriaus dydį bei egzamino rezultatą) 
+\begin{DoxyCode}
+TEST (OperatorTest, testOperators)
+\{
+    std::vector<Studentas> students;
+
+    std::string name = "Klaudijus";
+    std::string surname = "Mackonis";
+    std::vector<double> temp \{1, 2, 3\};
+    double exam = 4;
+    Studentas newStudent(name, surname, temp, exam);
+    students.push\_back(newStudent);
+
+    name = "Mackonis";
+    surname = "Klaudijus";
+    temp = \{2, 3, 4\};
+    exam = 5;
+    Studentas newStudent1(name, surname, temp, exam);
+    students.push\_back(newStudent1);
+
+    EXPECT\_FALSE(operator>(students[0].getVardas(), students[1].getVardas()));
+    EXPECT\_FALSE(operator<(students[1].getVardas(), students[0].getVardas()));
+\}
+\end{DoxyCode}
+
+\item Testuojami {\ttfamily overloaded} operatoriai pagal duotus studentų vardus. 
+\begin{DoxyCode}
+int main (int argc, char **argv)
+\{
+    testing::InitGoogleTest(&argc, argv);
+    return RUN\_ALL\_TESTS();
+\}
+\end{DoxyCode}
+
+\item {\ttfamily main} funkcija
+\end{DoxyItemize}
+
+{\bfseries Rezultatai\+:} 
+\begin{DoxyCode}
+[==========] Running 2 tests from 2 test cases.
+[----------] Global test environment set-up.
+[----------] 1 test from StudentTest
+[ RUN      ] StudentTest.testClass
+[       OK ] StudentTest.testClass (0 ms)
+[----------] 1 test from StudentTest (0 ms total)
+
+[----------] 1 test from OperatorTest
+[ RUN      ] OperatorTest.testOperators
+[       OK ] OperatorTest.testOperators (0 ms)
+[----------] 1 test from OperatorTest (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 2 tests from 2 test cases ran. (2 ms total)
+[  PASSED  ] 2 tests.
+\end{DoxyCode}
+
+
+\subsubsection*{v1.\+51}
+
+{\bfseries Pridėta\+:}
+
+
+\begin{DoxyItemize}
+\item 3 operatoriai, tačiau nepanaudoti programoje 
+\begin{DoxyCode}
+bool operator >(Studentas & s1, Studentas & s2)
+\{
+    return s1.getVardas() < s2.getVardas();
+\}
+\end{DoxyCode}
+ 
+\begin{DoxyCode}
+bool operator <=(Studentas & s1, Studentas & s2)
+\{
+    return s1.getVardas() < s2.getVardas();
+\}
+\end{DoxyCode}
+ 
+\begin{DoxyCode}
+bool operator >=(Studentas & s1, Studentas & s2)
+\{
+    return s1.getVardas() < s2.getVardas();
+\}
+\end{DoxyCode}
+
+\end{DoxyItemize}
+
+\subsubsection*{v1.\+5}
+
+{\bfseries Pridėta\+:}
+
+
+\begin{DoxyItemize}
+\item {\bfseries Derived} klasė {\ttfamily \hyperlink{classStudentas}{Studentas}}\+: {\ttfamily class \hyperlink{classStudentas}{Studentas} \+: public \hyperlink{classStudentBase}{Student\+Base}}
+\end{DoxyItemize}
+
+{\bfseries Koreguota\+:}
+
+
+\begin{DoxyItemize}
+\item Klasė {\ttfamily Students} tapo {\bfseries base} klase {\ttfamily \hyperlink{classStudentBase}{Student\+Base}}
+\item Programoje kuriami objektai ir kviečiamos funkcijos iš išvestinės {\ttfamily \hyperlink{classStudentas}{Studentas}} klasės\+: 
+\begin{DoxyCode}
+std::vector<Studentas> students;
+
+Studentas newStudent(name, surname, temp, exam);
+
+bool operator <(Studentas & s1, Studentas & s2)
+\{
+    return s1.getVardas() < s2.getVardas();
+\}
+\end{DoxyCode}
+
+\item Programos veikimo laikas\+: 
+\begin{DoxyCode}
+v1.2: 4,66906 s
+v1.5: 2.22834 s
+\end{DoxyCode}
+
+\end{DoxyItemize}
+
+\subsubsection*{v1.\+2}
+
+{\bfseries Koreguota\+:}
+
+
+\begin{DoxyItemize}
+\item {\ttfamily \hyperlink{student_8h}{student.\+h}} faile pridėta operatorius (operator$<$) 
+\begin{DoxyCode}
+bool operator <(const Student & s1, const Student & s2)
+\{
+    return s1.getVardas() < s2.getVardas();
+\}
+\end{DoxyCode}
+
+\item {\ttfamily \hyperlink{main_8cpp_source}{main.\+cpp}} faile panaudota {\ttfamily std\+::sort} funkcija 
+\begin{DoxyCode}
+std::sort(students.begin(), students.end(), operator<);
+\end{DoxyCode}
+
+\item Visos programos veikimo laikas (su 100000 studentų įrašų) 
+\begin{DoxyCode}
+v1.1: 2,14142 s
+v1.2: 4,66906 s
+\end{DoxyCode}
+
+\end{DoxyItemize}
+
+\subsubsection*{v1.\+1}
+
+{\bfseries Koreguota\+:}
+
+
+\begin{DoxyItemize}
+\item Sumažintas failų kiekis\+:
+\begin{DoxyItemize}
+\item {\ttfamily \hyperlink{student_8h}{student.\+h}} failas saugo {\itshape Student} klasę
+\item {\ttfamily \hyperlink{functions_8h}{functions.\+h}} failas saugo su klase nesusijusias funkcijas
+\end{DoxyItemize}
+\item Versijų v1.\+0 ir v1.\+1 programos spartos lyginimas (programa leidžiama 5 kartus ir gaunamas vidurkis)\+: 
+\begin{DoxyCode}
+Tikrinama su 10000 studentų
+
+v1.0: 0,0623813 s
+v1.1: 0,21713 s
+\end{DoxyCode}
+ 
+\begin{DoxyCode}
+Tikrinama su 100000 studentų
+
+v1.0: 0,752753 s
+v1.1: 2,14142 s
+\end{DoxyCode}
+
+\item Visos programos veikimo laikas priklausomai nuo kompiliatoriaus optimizavimo lygio (su 100000 studentų įrašais)\+: 
+\begin{DoxyCode}
+default: 2,28562 s
+Flag O1: 2,26381 s
+Flag O2: 2,2869 s
+Flag O3: 2,3517 s
+\end{DoxyCode}
+
+\end{DoxyItemize}
+
+\subsubsection*{v1.\+0}
+
+
+\begin{DoxyItemize}
+\item Programos veikimo sparta prieš koreguojant jos dalis\+: 2,18899 s.
+\end{DoxyItemize}
+
+{\bfseries Koreguota\+:}
+
+
+\begin{DoxyItemize}
+\item Pakeistas studento {\bfseries vardo} rūšiavimo algortimas, pridėta lyginimo funkcija ({\ttfamily compare\+By\+Letter}) ir panadutoas {\ttfamily std\+::sort} algoritmas
+\begin{DoxyItemize}
+\item Programos sparta\+: 0,049468 s. 
+\begin{DoxyCode}
+for (int x = 0; x < stud.size() - 1; x++)         
+\{
+  for (int y = x + 1; y < stud.size(); y++)
+  \{  
+    if (stud[x].vardas > stud[y].vardas)
+    \{
+      std::swap(stud[x], stud[y]);
+    \}
+  \}
+\}
+
+                    ↓
+
+bool compareByLetter(const studentas &a, const studentas &b)
+\{
+    return a.vardas < b.vardas;
+\}
+------------------------------------------------------------
+std::sort(stud.begin(), stud.end(), compareByLetter);
+\end{DoxyCode}
+
+\end{DoxyItemize}
+\item Pakeistas atsitiktinių skaičių generavimo algoritmas\+:
+\begin{DoxyItemize}
+\item Programos sparta\+: 0,126222 s. 
+\begin{DoxyCode}
+std::random\_device rd;
+  std::mt19937 mt(rd());
+  std::uniform\_int\_distribution<int> dist (1, 10);
+\end{DoxyCode}
+ \subsubsection*{\href{https://github.com/KlauMack/Duomenu_apdorojimas/releases/tag/v0.5.3}{\tt v0.\+5.\+3}}
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+{\bfseries Koreguota\+:}
+
+
+\begin{DoxyItemize}
+\item Matuojamas programos veikimo laikas, naudojant {\ttfamily std\+::deque} konteinerį
+\item Skaičiavimai vykdomi iš identiško duomenų failo, kurį sudaro 100 studentų duomenų. 
+\begin{DoxyCode}
+Programos veikimo laikas (vidurkis iš 5 skaičiavimų): 0,00096704 s
+\end{DoxyCode}
+ \subsubsection*{\href{https://github.com/KlauMack/Duomenu_apdorojimas/releases/tag/v0.5.2}{\tt v0.\+5.\+2}}
+\end{DoxyItemize}
+
+{\bfseries Koreguota\+:}
+
+
+\begin{DoxyItemize}
+\item Matuojamas programos veikimo laikas, naudojant {\ttfamily std\+::list} konteinerį
+\item Skaičiavimai vykdomi iš identiško duomenų failo, kurį sudaro 100 studentų duomenų. 
+\begin{DoxyCode}
+Programos veikimo laikas (vidurkis iš 5 skaičiavimų): 0,00046482 s
+\end{DoxyCode}
+ \subsubsection*{\href{https://github.com/KlauMack/Duomenu_apdorojimas/releases/tag/v0.5.1}{\tt v0.\+5.\+1}}
+\end{DoxyItemize}
+
+{\bfseries Koreguota\+:}
+
+
+\begin{DoxyItemize}
+\item Matuojamas programos veikimo laikas (be failo kūrimo ir studentų duomenų išvedimo į du naujus failus), naudojant {\ttfamily std\+::vector} konteinerį
+\item Skaičiavimai vykdomi iš identiško duomenų failo, kurį sudaro 100 studentų duomenų. 
+\begin{DoxyCode}
+Programos veikimo laikas (vidurkis iš 5 skaičiavimų): 0,00043326 s
+\end{DoxyCode}
+ \subsubsection*{\href{https://github.com/KlauMack/Duomenu_apdorojimas/releases/tag/v0.4.1}{\tt v0.\+4.\+1}}
+\end{DoxyItemize}
+
+{\bfseries Koreguota\+:}
+
+
+\begin{DoxyItemize}
+\item Pridėtas {\ttfamily main.\+h} failas.
+\end{DoxyItemize}
+
+\subsubsection*{\href{https://github.com/KlauMack/Duomenu_apdorojimas/releases/tag/v0.4}{\tt v0.\+4}}
+
+{\bfseries Papildyta\+:}
+
+
+\begin{DoxyItemize}
+\item Programa sugeneruoja pasirinktinai duomenų failą su (10, 100, 1000, 10000, 100000) studentų įrašais
+\item Studentai pagal galutinį balą suskirstomi į dvi kategorijas\+:
+\begin{DoxyItemize}
+\item {\bfseries vargšiukai}, jei {\bfseries galutinis balas $<$ 5}
+\item {\bfseries kietiakai}, jei {\bfseries galutinis balas $>$= 5}
+\end{DoxyItemize}
+\item Surūšiuoti studentai išvedami į du naujus failus ({\ttfamily \char`\"{}vargšiukai.\+txt\char`\"{}}, {\ttfamily \char`\"{}kietiakai.\+txt\char`\"{}})
+\item Programa išmatuoja visos programos veikimo laiką (naudojant {\ttfamily $<$chrono$>$} biblioteką) bei šias programos dalis\+:
+\begin{DoxyItemize}
+\item duomenų failo kūrimas
+\item surūšiuotų studentų išvedimas į failus
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+{\bfseries Laikų rezultatai\+:}
+\begin{DoxyItemize}
+\item Visi skaičiavimai vykdomi, kai studentų namų darbų rezultatų skaičius lygus 5
+\item Gauti skaičiavimų rezultatai -\/ vidurkis iš 5 skaičiavimų.
+\item Galutinis balas, kuris buvo pasirinktas skačiuoti -\/ vidurkis. 
+\begin{DoxyCode}
+Duomenų failą sudaro 10 studentų įrašų
+Failo kūrimas:            0,00362138 s
+Išvedimas į du failus:    0,00365794 s
+Visos prgoramos veikimas: 0,01728572 s
+
+Duomenų failą sudaro 100 studentų įrašų
+Failo kūrimas:            0,0212869 s
+Išvedimas į du failus:    0,00361348 s
+Visos prgoramos veikimas: 0,02436062 s
+
+Duomenų failą sudaro 1000 studentų įrašų
+Failo kūrimas:            0,00642516 s
+Išvedimas į du failus:    0,0054372 s
+Visos prgoramos veikimas: 0,1331356 s
+
+Duomenų failą sudaro 10000 studentų įrašų
+Failo kūrimas:            0,0277831 s
+Išvedimas į du failus:    0,01065764 s
+Visos prgoramos veikimas: 5,705478 s
+
+Duomenų failą sudaro 100000 studentų įrašų
+Failo kūrimas:            0,2306435 s
+Išvedimas į du failus:    0,1029456 s
+Visos prgoramos veikimas: 464,4325 s
+\end{DoxyCode}
+ \subsubsection*{\href{https://github.com/KlauMack/Duomenu_apdorojimas/releases/tag/v0.3}{\tt v0.\+3}}
+\end{DoxyItemize}
+
+{\bfseries Koreguota\+:}
+
+
+\begin{DoxyItemize}
+\item Funkcijų aprašai ir struktūros perkeltos į {\ttfamily header} failą ({\ttfamily main.\+h})
+\item Panaudotas išimčių valdymas, tikrinant ar programa gali nuskaityti duomenų failą.
+\end{DoxyItemize}
+
+\subsubsection*{\href{https://github.com/KlauMack/Duomenu_apdorojimas/releases/tag/v0.2}{\tt v0.\+2}}
+
+{\bfseries Papildyta\+:}
+
+
+\begin{DoxyItemize}
+\item Programa geba nuskaityti duomenis iš failo ({\ttfamily kursiokai.\+txt}) -\/ sukurkite failą pavadinimu {\ttfamily kursiokai.\+txt} tame pačiame aplankale kaip ir {\ttfamily source} failas arba parsisiųskite duomenų failo pavyzdį
+\item Išvesti studentai surušiuoti pagal vardus (ir pavardes) abecėlės tvarka.
+\end{DoxyItemize}
+
+\subsubsection*{\href{https://github.com/KlauMack/Duomenu_apdorojimas/releases/tag/v0.1}{\tt v0.\+1}}
+
+{\bfseries Papildyta\+:}
+
+
+\begin{DoxyItemize}
+\item Iš duomenų suskaičiuojamas galutinis balas (rezultatų {\bfseries vidurkis} ({\itshape Vid}) arba {\bfseries mediana} ({\itshape Med})) ir išvedama į ekrana pavidalu\+: 
+\begin{DoxyCode}
+Vardas   Pavardė   Galutinis (Vid.) / Galutinis (Med.)
+------------------------------------------------------
+Vardas1  Pavardė1  x.xx
+Vardas2  Pavardė2  y.yy
+...
+\end{DoxyCode}
+ 
+\end{DoxyItemize}

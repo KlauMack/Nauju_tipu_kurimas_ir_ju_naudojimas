@@ -1,0 +1,223 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.13"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Naujų tipų kūrimas ir jų naudojimas: Naujų tipų kūrimas ir jų naudojimas</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Naujų tipų kūrimas ir jų naudojimas
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Sugeneruota Doxygen 1.8.13 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Paieška');
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Paieška');
+  $(document).ready(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">Naujų tipų kūrimas ir jų naudojimas </div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><h2>Programos tikslas</h2>
+<ul>
+<li>Programa nuskaito šiuos studentų duomenis:<ul>
+<li><b>vardą</b> ir <b>pavardę</b></li>
+<li><em>n</em> atliktų <b>namų darbų</b> (<code>nd</code>) rezultatus (10-balėje sistemoje) ir egzamino (<code>egz</code>) rezultatą.</li>
+</ul>
+</li>
+<li>Iš šių duomenų programa suskaičiuoja galutinį balą. ## Išvedimo pavyzdys: <div class="fragment"><div class="line">Vardas    Pavardė     Galutinis</div><div class="line">----------------------------</div><div class="line">Vardas1   Pavardė1    x.xx</div><div class="line">Vardas2   Pavardė2    y.yy</div><div class="line">...</div></div><!-- fragment --> <h2>Įdiegimas (Unix kompiuteryje) naudojant <code>gcc</code>kompiliatorių</h2>
+</li>
+</ul>
+<ul>
+<li><code>git clone <a href="https://github.com/KlauMack/Nauju_tipu_kurimas_ir_ju_naudojimas.git">https://github.com/KlauMack/Nauju_tipu_kurimas_ir_ju_naudojimas.git</a></code></li>
+<li><code>cd Nauju_tipu_kurimas_ir_ju_naudojimas</code></li>
+<li><code>make</code></li>
+<li><code>./tipas</code> <h2>Versijų istorija (changelog)</h2>
+</li>
+</ul>
+<h3>v2.0</h3>
+<p><b>Pridėta:</b></p>
+<h1>Google Test</h1>
+<ul>
+<li><code>./runTest</code> failo sukūrimo instrukcijos:<ul>
+<li><code>cmake CMakeLists.txt</code></li>
+<li><code>make</code></li>
+<li><code>./runTests</code></li>
+</ul>
+</li>
+<li>Jei iškyla nesklandumų su programos paleidimu, galite vykdyti šias instrukcijas (<code>Ubuntu</code>):<ul>
+<li>Įdiekite <code>gtest</code> plėtros paketą: <code>sudo apt-get install libgtest-dev</code></li>
+<li>Įdiegti <code>source</code> failai turėtų atsirasti <code>/usr/src/gtest</code> vietoje. Tuomet, įdiekite <code>cmake</code>: <code>sudo apt-get install cmake</code> <code>cd /usr/src/gtest</code> <code>sudo cmake CMakeLists.txt</code> <code>sudo make</code></li>
+<li>Nukopijuokite <code>libgtest.a</code> ir <code>libgtest_main.a</code> į savo <code>/usr/lib</code> aplankalą: <code>sudo cp *.a /usr/lib</code></li>
+<li>Toliau vykdykite <code>./runTest</code> failo sukūrimo instrukcijas</li>
+</ul>
+</li>
+<li>**<code>CMakeLists.txt</code>:** <div class="fragment"><div class="line">cmake_minimum_required(VERSION 2.6)</div><div class="line"></div><div class="line"># Locate GTest</div><div class="line">find_package(GTest REQUIRED)</div><div class="line">include_directories(${GTEST_INCLUDE_DIRS})</div><div class="line"></div><div class="line"># Link runTests with what we want to test and the GTest and pthread library</div><div class="line">add_executable(runTests test/test_student.cpp)</div><div class="line">target_link_libraries(runTests ${GTEST_LIBRARIES} pthread)</div><div class="line">target_link_libraries(runTests ${GTEST_LIBRARIES} gtest_main pthread)</div></div><!-- fragment --></li>
+<li>**<code>test_student.cpp:</code>** <div class="fragment"><div class="line">TEST (StudentTest, testClass)</div><div class="line">{</div><div class="line">    std::string name = &quot;Klaudijus&quot;;</div><div class="line">    std::string surname = &quot;Mackonis&quot;;</div><div class="line">    std::vector&lt;double&gt; temp {1, 2, 3};</div><div class="line">    double exam = 4;</div><div class="line">    Studentas newStudent(name, surname, temp, exam);</div><div class="line"></div><div class="line">    EXPECT_EQ(newStudent.getVardas(), &quot;Klaudijus&quot;);</div><div class="line">    EXPECT_EQ(newStudent.getPavarde(), &quot;Mackonis&quot;);</div><div class="line">    EXPECT_EQ(newStudent.getSizeOfNd(), 3);</div><div class="line">    EXPECT_EQ(newStudent.getEgz(), 4);</div></div><!-- fragment --></li>
+<li>Testuojama, ar <code><a class="el" href="classStudentas.html">Studentas</a></code> klasė grąžina tikėtinus rezultatus (vardą, pavardę, namų darbų rezultatų vekotriaus dydį bei egzamino rezultatą) <div class="fragment"><div class="line">TEST (OperatorTest, testOperators)</div><div class="line">{</div><div class="line">    std::vector&lt;Studentas&gt; students;</div><div class="line"></div><div class="line">    std::string name = &quot;Klaudijus&quot;;</div><div class="line">    std::string surname = &quot;Mackonis&quot;;</div><div class="line">    std::vector&lt;double&gt; temp {1, 2, 3};</div><div class="line">    double exam = 4;</div><div class="line">    Studentas newStudent(name, surname, temp, exam);</div><div class="line">    students.push_back(newStudent);</div><div class="line"></div><div class="line">    name = &quot;Mackonis&quot;;</div><div class="line">    surname = &quot;Klaudijus&quot;;</div><div class="line">    temp = {2, 3, 4};</div><div class="line">    exam = 5;</div><div class="line">    Studentas newStudent1(name, surname, temp, exam);</div><div class="line">    students.push_back(newStudent1);</div><div class="line"></div><div class="line">    EXPECT_FALSE(operator&gt;(students[0].getVardas(), students[1].getVardas()));</div><div class="line">    EXPECT_FALSE(operator&lt;(students[1].getVardas(), students[0].getVardas()));</div><div class="line">}</div></div><!-- fragment --></li>
+<li>Testuojami <code>overloaded</code> operatoriai pagal duotus studentų vardus. <div class="fragment"><div class="line">int main (int argc, char **argv)</div><div class="line">{</div><div class="line">    testing::InitGoogleTest(&amp;argc, argv);</div><div class="line">    return RUN_ALL_TESTS();</div><div class="line">}</div></div><!-- fragment --></li>
+<li><code>main</code> funkcija</li>
+</ul>
+<p><b>Rezultatai:</b> </p><div class="fragment"><div class="line">[==========] Running 2 tests from 2 test cases.</div><div class="line">[----------] Global test environment set-up.</div><div class="line">[----------] 1 test from StudentTest</div><div class="line">[ RUN      ] StudentTest.testClass</div><div class="line">[       OK ] StudentTest.testClass (0 ms)</div><div class="line">[----------] 1 test from StudentTest (0 ms total)</div><div class="line"></div><div class="line">[----------] 1 test from OperatorTest</div><div class="line">[ RUN      ] OperatorTest.testOperators</div><div class="line">[       OK ] OperatorTest.testOperators (0 ms)</div><div class="line">[----------] 1 test from OperatorTest (0 ms total)</div><div class="line"></div><div class="line">[----------] Global test environment tear-down</div><div class="line">[==========] 2 tests from 2 test cases ran. (2 ms total)</div><div class="line">[  PASSED  ] 2 tests.</div></div><!-- fragment --><h3>v1.51</h3>
+<p><b>Pridėta:</b></p>
+<ul>
+<li>3 operatoriai, tačiau nepanaudoti programoje <div class="fragment"><div class="line">bool operator &gt;(Studentas &amp; s1, Studentas &amp; s2)</div><div class="line">{</div><div class="line">    return s1.getVardas() &lt; s2.getVardas();</div><div class="line">}</div></div><!-- fragment --> <div class="fragment"><div class="line">bool operator &lt;=(Studentas &amp; s1, Studentas &amp; s2)</div><div class="line">{</div><div class="line">    return s1.getVardas() &lt; s2.getVardas();</div><div class="line">}</div></div><!-- fragment --> <div class="fragment"><div class="line">bool operator &gt;=(Studentas &amp; s1, Studentas &amp; s2)</div><div class="line">{</div><div class="line">    return s1.getVardas() &lt; s2.getVardas();</div><div class="line">}</div></div><!-- fragment --></li>
+</ul>
+<h3>v1.5</h3>
+<p><b>Pridėta:</b></p>
+<ul>
+<li><b>Derived</b> klasė <code><a class="el" href="classStudentas.html">Studentas</a></code>: <code>class <a class="el" href="classStudentas.html">Studentas</a> : public <a class="el" href="classStudentBase.html">StudentBase</a></code></li>
+</ul>
+<p><b>Koreguota:</b></p>
+<ul>
+<li>Klasė <code>Students</code> tapo <b>base</b> klase <code><a class="el" href="classStudentBase.html">StudentBase</a></code></li>
+<li>Programoje kuriami objektai ir kviečiamos funkcijos iš išvestinės <code><a class="el" href="classStudentas.html">Studentas</a></code> klasės: <div class="fragment"><div class="line">std::vector&lt;Studentas&gt; students;</div><div class="line"></div><div class="line">Studentas newStudent(name, surname, temp, exam);</div><div class="line"></div><div class="line">bool operator &lt;(Studentas &amp; s1, Studentas &amp; s2)</div><div class="line">{</div><div class="line">    return s1.getVardas() &lt; s2.getVardas();</div><div class="line">}</div></div><!-- fragment --></li>
+<li>Programos veikimo laikas: <div class="fragment"><div class="line">v1.2: 4,66906 s</div><div class="line">v1.5: 2.22834 s</div></div><!-- fragment --></li>
+</ul>
+<h3>v1.2</h3>
+<p><b>Koreguota:</b></p>
+<ul>
+<li><code><a class="el" href="student_8h.html">student.h</a></code> faile pridėta operatorius (operator&lt;) <div class="fragment"><div class="line">bool operator &lt;(const Student &amp; s1, const Student &amp; s2)</div><div class="line">{</div><div class="line">    return s1.getVardas() &lt; s2.getVardas();</div><div class="line">}</div></div><!-- fragment --></li>
+<li><code><a class="el" href="main_8cpp_source.html">main.cpp</a></code> faile panaudota <code>std::sort</code> funkcija <div class="fragment"><div class="line">std::sort(students.begin(), students.end(), operator&lt;);</div></div><!-- fragment --></li>
+<li>Visos programos veikimo laikas (su 100000 studentų įrašų) <div class="fragment"><div class="line">v1.1: 2,14142 s</div><div class="line">v1.2: 4,66906 s</div></div><!-- fragment --></li>
+</ul>
+<h3>v1.1</h3>
+<p><b>Koreguota:</b></p>
+<ul>
+<li>Sumažintas failų kiekis:<ul>
+<li><code><a class="el" href="student_8h.html">student.h</a></code> failas saugo <em>Student</em> klasę</li>
+<li><code><a class="el" href="functions_8h.html">functions.h</a></code> failas saugo su klase nesusijusias funkcijas</li>
+</ul>
+</li>
+<li>Versijų v1.0 ir v1.1 programos spartos lyginimas (programa leidžiama 5 kartus ir gaunamas vidurkis): <div class="fragment"><div class="line">Tikrinama su 10000 studentų</div><div class="line"></div><div class="line">v1.0: 0,0623813 s</div><div class="line">v1.1: 0,21713 s</div></div><!-- fragment --> <div class="fragment"><div class="line">Tikrinama su 100000 studentų</div><div class="line"></div><div class="line">v1.0: 0,752753 s</div><div class="line">v1.1: 2,14142 s</div></div><!-- fragment --></li>
+<li>Visos programos veikimo laikas priklausomai nuo kompiliatoriaus optimizavimo lygio (su 100000 studentų įrašais): <div class="fragment"><div class="line">default: 2,28562 s</div><div class="line">Flag O1: 2,26381 s</div><div class="line">Flag O2: 2,2869 s</div><div class="line">Flag O3: 2,3517 s</div></div><!-- fragment --></li>
+</ul>
+<h3>v1.0</h3>
+<ul>
+<li>Programos veikimo sparta prieš koreguojant jos dalis: 2,18899 s.</li>
+</ul>
+<p><b>Koreguota:</b></p>
+<ul>
+<li>Pakeistas studento <b>vardo</b> rūšiavimo algortimas, pridėta lyginimo funkcija (<code>compareByLetter</code>) ir panadutoas <code>std::sort</code> algoritmas<ul>
+<li>Programos sparta: 0,049468 s. <div class="fragment"><div class="line">for (int x = 0; x &lt; stud.size() - 1; x++)         </div><div class="line">{</div><div class="line">  for (int y = x + 1; y &lt; stud.size(); y++)</div><div class="line">  {  </div><div class="line">    if (stud[x].vardas &gt; stud[y].vardas)</div><div class="line">    {</div><div class="line">      std::swap(stud[x], stud[y]);</div><div class="line">    }</div><div class="line">  }</div><div class="line">}</div><div class="line"></div><div class="line">                    ↓</div><div class="line"></div><div class="line">bool compareByLetter(const studentas &amp;a, const studentas &amp;b)</div><div class="line">{</div><div class="line">    return a.vardas &lt; b.vardas;</div><div class="line">}</div><div class="line">------------------------------------------------------------</div><div class="line">std::sort(stud.begin(), stud.end(), compareByLetter);</div></div><!-- fragment --></li>
+</ul>
+</li>
+<li>Pakeistas atsitiktinių skaičių generavimo algoritmas:<ul>
+<li>Programos sparta: 0,126222 s. <div class="fragment"><div class="line">std::random_device rd;</div><div class="line">  std::mt19937 mt(rd());</div><div class="line">  std::uniform_int_distribution&lt;int&gt; dist (1, 10);</div></div><!-- fragment --> <h3><a href="https://github.com/KlauMack/Duomenu_apdorojimas/releases/tag/v0.5.3">v0.5.3</a></h3>
+</li>
+</ul>
+</li>
+</ul>
+<p><b>Koreguota:</b></p>
+<ul>
+<li>Matuojamas programos veikimo laikas, naudojant <code>std::deque</code> konteinerį</li>
+<li>Skaičiavimai vykdomi iš identiško duomenų failo, kurį sudaro 100 studentų duomenų. <div class="fragment"><div class="line">Programos veikimo laikas (vidurkis iš 5 skaičiavimų): 0,00096704 s</div></div><!-- fragment --> <h3><a href="https://github.com/KlauMack/Duomenu_apdorojimas/releases/tag/v0.5.2">v0.5.2</a></h3>
+</li>
+</ul>
+<p><b>Koreguota:</b></p>
+<ul>
+<li>Matuojamas programos veikimo laikas, naudojant <code>std::list</code> konteinerį</li>
+<li>Skaičiavimai vykdomi iš identiško duomenų failo, kurį sudaro 100 studentų duomenų. <div class="fragment"><div class="line">Programos veikimo laikas (vidurkis iš 5 skaičiavimų): 0,00046482 s</div></div><!-- fragment --> <h3><a href="https://github.com/KlauMack/Duomenu_apdorojimas/releases/tag/v0.5.1">v0.5.1</a></h3>
+</li>
+</ul>
+<p><b>Koreguota:</b></p>
+<ul>
+<li>Matuojamas programos veikimo laikas (be failo kūrimo ir studentų duomenų išvedimo į du naujus failus), naudojant <code>std::vector</code> konteinerį</li>
+<li>Skaičiavimai vykdomi iš identiško duomenų failo, kurį sudaro 100 studentų duomenų. <div class="fragment"><div class="line">Programos veikimo laikas (vidurkis iš 5 skaičiavimų): 0,00043326 s</div></div><!-- fragment --> <h3><a href="https://github.com/KlauMack/Duomenu_apdorojimas/releases/tag/v0.4.1">v0.4.1</a></h3>
+</li>
+</ul>
+<p><b>Koreguota:</b></p>
+<ul>
+<li>Pridėtas <code>main.h</code> failas.</li>
+</ul>
+<h3><a href="https://github.com/KlauMack/Duomenu_apdorojimas/releases/tag/v0.4">v0.4</a></h3>
+<p><b>Papildyta:</b></p>
+<ul>
+<li>Programa sugeneruoja pasirinktinai duomenų failą su (10, 100, 1000, 10000, 100000) studentų įrašais</li>
+<li>Studentai pagal galutinį balą suskirstomi į dvi kategorijas:<ul>
+<li><b>vargšiukai</b>, jei <b>galutinis balas &lt; 5</b></li>
+<li><b>kietiakai</b>, jei <b>galutinis balas &gt;= 5</b></li>
+</ul>
+</li>
+<li>Surūšiuoti studentai išvedami į du naujus failus (<code>"vargšiukai.txt"</code>, <code>"kietiakai.txt"</code>)</li>
+<li>Programa išmatuoja visos programos veikimo laiką (naudojant <code>&lt;chrono&gt;</code> biblioteką) bei šias programos dalis:<ul>
+<li>duomenų failo kūrimas</li>
+<li>surūšiuotų studentų išvedimas į failus</li>
+</ul>
+</li>
+</ul>
+<p><b>Laikų rezultatai:</b></p><ul>
+<li>Visi skaičiavimai vykdomi, kai studentų namų darbų rezultatų skaičius lygus 5</li>
+<li>Gauti skaičiavimų rezultatai - vidurkis iš 5 skaičiavimų.</li>
+<li>Galutinis balas, kuris buvo pasirinktas skačiuoti - vidurkis. <div class="fragment"><div class="line">Duomenų failą sudaro 10 studentų įrašų</div><div class="line">Failo kūrimas:            0,00362138 s</div><div class="line">Išvedimas į du failus:    0,00365794 s</div><div class="line">Visos prgoramos veikimas: 0,01728572 s</div><div class="line"></div><div class="line">Duomenų failą sudaro 100 studentų įrašų</div><div class="line">Failo kūrimas:            0,0212869 s</div><div class="line">Išvedimas į du failus:    0,00361348 s</div><div class="line">Visos prgoramos veikimas: 0,02436062 s</div><div class="line"></div><div class="line">Duomenų failą sudaro 1000 studentų įrašų</div><div class="line">Failo kūrimas:            0,00642516 s</div><div class="line">Išvedimas į du failus:    0,0054372 s</div><div class="line">Visos prgoramos veikimas: 0,1331356 s</div><div class="line"></div><div class="line">Duomenų failą sudaro 10000 studentų įrašų</div><div class="line">Failo kūrimas:            0,0277831 s</div><div class="line">Išvedimas į du failus:    0,01065764 s</div><div class="line">Visos prgoramos veikimas: 5,705478 s</div><div class="line"></div><div class="line">Duomenų failą sudaro 100000 studentų įrašų</div><div class="line">Failo kūrimas:            0,2306435 s</div><div class="line">Išvedimas į du failus:    0,1029456 s</div><div class="line">Visos prgoramos veikimas: 464,4325 s</div></div><!-- fragment --> <h3><a href="https://github.com/KlauMack/Duomenu_apdorojimas/releases/tag/v0.3">v0.3</a></h3>
+</li>
+</ul>
+<p><b>Koreguota:</b></p>
+<ul>
+<li>Funkcijų aprašai ir struktūros perkeltos į <code>header</code> failą (<code>main.h</code>)</li>
+<li>Panaudotas išimčių valdymas, tikrinant ar programa gali nuskaityti duomenų failą.</li>
+</ul>
+<h3><a href="https://github.com/KlauMack/Duomenu_apdorojimas/releases/tag/v0.2">v0.2</a></h3>
+<p><b>Papildyta:</b></p>
+<ul>
+<li>Programa geba nuskaityti duomenis iš failo (<code>kursiokai.txt</code>) - sukurkite failą pavadinimu <code>kursiokai.txt</code> tame pačiame aplankale kaip ir <code>source</code> failas arba parsisiųskite duomenų failo pavyzdį</li>
+<li>Išvesti studentai surušiuoti pagal vardus (ir pavardes) abecėlės tvarka.</li>
+</ul>
+<h3><a href="https://github.com/KlauMack/Duomenu_apdorojimas/releases/tag/v0.1">v0.1</a></h3>
+<p><b>Papildyta:</b></p>
+<ul>
+<li>Iš duomenų suskaičiuojamas galutinis balas (rezultatų <b>vidurkis</b> (<em>Vid</em>) arba <b>mediana</b> (<em>Med</em>)) ir išvedama į ekrana pavidalu: <div class="fragment"><div class="line">Vardas   Pavardė   Galutinis (Vid.) / Galutinis (Med.)</div><div class="line">------------------------------------------------------</div><div class="line">Vardas1  Pavardė1  x.xx</div><div class="line">Vardas2  Pavardė2  y.yy</div><div class="line">...</div></div><!-- fragment --> </li>
+</ul>
+</div></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Sugeneruota &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.13
+</small></address>
+</body>
+</html>

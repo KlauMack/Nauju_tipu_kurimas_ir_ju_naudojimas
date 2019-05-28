@@ -1,0 +1,364 @@
+\hypertarget{functions_8h}{}\section{functions.\+h Failo Nuoroda}
+\label{functions_8h}\index{functions.\+h@{functions.\+h}}
+{\ttfamily \#include \char`\"{}student.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$fstream$>$}\newline
+{\ttfamily \#include $<$random$>$}\newline
+{\ttfamily \#include $<$chrono$>$}\newline
+{\ttfamily \#include $<$iomanip$>$}\newline
+{\ttfamily \#include $<$string$>$}\newline
+{\ttfamily \#include $<$vector$>$}\newline
+{\ttfamily \#include $<$algorithm$>$}\newline
+Įtraukimo priklausomybių diagrama functions.\+h\+:
+% FIG 0
+Šis grafas rodo, kuris failas tiesiogiai ar netiesiogiai įtraukia šį failą\+:
+% FIG 1
+\subsection*{Funkcijos}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{functions_8h_aff2ed90e460c16f3bdc80d4365c356d3}{generate} (int count)
+\item 
+void \hyperlink{functions_8h_ab0f814ecd25ea81abcbd45c713734424}{read\+Generated} (std\+::vector$<$ \hyperlink{classStudentas}{Studentas} $>$ \&new\+Vec)
+\item 
+void \hyperlink{functions_8h_acae96252841ab74a7984577965a61f3e}{read\+User} (std\+::vector$<$ \hyperlink{classStudentas}{Studentas} $>$ \&new\+Vec)
+\item 
+void \hyperlink{functions_8h_a3bfd6559fdd1ead599cc75d68e5940b9}{vidurkis} (const std\+::vector$<$ \hyperlink{classStudentas}{Studentas} $>$ \&new\+Vec)
+\item 
+void \hyperlink{functions_8h_a267d917d0a78c8945f09fabc6729faf7}{mediana} (const std\+::vector$<$ \hyperlink{classStudentas}{Studentas} $>$ \&new\+Vec)
+\item 
+void \hyperlink{functions_8h_a4b820125d5929504aa14ce3e860f66b8}{display\+Vector} (const std\+::vector$<$ \hyperlink{classStudentas}{Studentas} $>$ \&new\+Vec)
+\end{DoxyCompactItemize}
+
+
+\subsection{Smulkus aprašymas}
+Failas, saugantis funkcijas, nesusijusias su klasėmis. 
+
+\subsection{Funkcijos Dokumentacija}
+\mbox{\Hypertarget{functions_8h_a4b820125d5929504aa14ce3e860f66b8}\label{functions_8h_a4b820125d5929504aa14ce3e860f66b8}} 
+\index{functions.\+h@{functions.\+h}!display\+Vector@{display\+Vector}}
+\index{display\+Vector@{display\+Vector}!functions.\+h@{functions.\+h}}
+\subsubsection{\texorpdfstring{display\+Vector()}{displayVector()}}
+{\footnotesize\ttfamily void display\+Vector (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ \hyperlink{classStudentas}{Studentas} $>$ \&}]{new\+Vec }\end{DoxyParamCaption})}
+
+Funkcija, išvedanti klasės vektoriaus turinį 
+
+Apibrėžimas failo functions.\+h eilutėje 266.
+
+
+\begin{DoxyCode}
+267 \{
+268     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} vecSize = newVec.size();
+269 
+270     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} i = 0; i < vecSize; i++)
+271     \{
+272         std::cout << newVec[i].getVardas() << \textcolor{stringliteral}{" "} << newVec[i].getPavarde() << \textcolor{stringliteral}{" "};
+273         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} j = 0; j < newVec[i].getSizeOfNd(); j++)
+274         \{
+275             std::cout << newVec[i].getNd(j) << \textcolor{stringliteral}{" "};
+276         \}
+277         std::cout << newVec[i].getEgz() << std::endl;
+278     \}
+279 \}
+\end{DoxyCode}
+\mbox{\Hypertarget{functions_8h_aff2ed90e460c16f3bdc80d4365c356d3}\label{functions_8h_aff2ed90e460c16f3bdc80d4365c356d3}} 
+\index{functions.\+h@{functions.\+h}!generate@{generate}}
+\index{generate@{generate}!functions.\+h@{functions.\+h}}
+\subsubsection{\texorpdfstring{generate()}{generate()}}
+{\footnotesize\ttfamily void generate (\begin{DoxyParamCaption}\item[{int}]{count }\end{DoxyParamCaption})}
+
+Funkcija generuoti \char`\"{}kursiokai.\+txt\char`\"{} failą 
+
+Apibrėžimas failo functions.\+h eilutėje 19.
+
+
+\begin{DoxyCode}
+20 \{
+21     \textcolor{comment}{//auto start = std::chrono::high\_resolution\_clock::now();}
+22 
+23     std::random\_device rd;
+24     std::mt19937 mt(rd());
+25     std::uniform\_int\_distribution<int> dist (1, 10);
+26 
+27     std::fstream outFile;
+28     outFile.open(\textcolor{stringliteral}{"kursiokai.txt"}, std::ios::out);
+29 
+30     std::string ilgiausiasZodis = \textcolor{stringliteral}{"Pavarde"} + std::to\_string(count);
+31     
+32     outFile << std::setw(ilgiausiasZodis.size())  << std::left  << \textcolor{stringliteral}{"Vardas"} << std::setw(ilgiausiasZodis.
+      size() + 2) << std::left << \textcolor{stringliteral}{"Pavarde"};
+33     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 1; i <= 5; i++)
+34     \{
+35         outFile << std::setw(5) << std::left << \textcolor{stringliteral}{"ND"} + std::to\_string(i);
+36     \}
+37 
+38     outFile << \textcolor{stringliteral}{"Egzaminas"} << std::endl;
+39 
+40     \textcolor{keywordtype}{int} number;
+41     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} j = 1; j < count; j++)
+42     \{
+43         outFile << std::setw(ilgiausiasZodis.size())  << std::left << \textcolor{stringliteral}{"Vardas"} + std::to\_string(j) << 
+      std::setw(ilgiausiasZodis.size() + 2) << std::left << \textcolor{stringliteral}{"Pavarde"} + std::to\_string(j);
+44         \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} a = 1; a <= 5; a++)
+45         \{
+46             number = dist(mt);
+47             outFile << std::setw(5) << number;
+48         \}
+49         number = dist(mt);
+50         outFile << number << std::endl;
+51     \}
+52 
+53     outFile << std::setw(ilgiausiasZodis.size())  << std::left << \textcolor{stringliteral}{"Vardas"} + std::to\_string(count) << 
+      std::setw(ilgiausiasZodis.size() + 2) << std::left << \textcolor{stringliteral}{"Pavarde"} + std::to\_string(count);
+54     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} b = 0; b < 6; b++)
+55     \{
+56         number = dist(mt);
+57         outFile << std::setw(5) << number;
+58     \}
+59 
+60     outFile.close();
+61 
+62     \textcolor{comment}{/*auto end = std::chrono::high\_resolution\_clock::now();}
+63 \textcolor{comment}{    std::chrono::duration<double> diff = end - start;}
+64 \textcolor{comment}{    std::cout << "Failo kurimo laikas sekundemis: " << diff.count() << " s\(\backslash\)n";*/}
+65 \}
+\end{DoxyCode}
+\mbox{\Hypertarget{functions_8h_a267d917d0a78c8945f09fabc6729faf7}\label{functions_8h_a267d917d0a78c8945f09fabc6729faf7}} 
+\index{functions.\+h@{functions.\+h}!mediana@{mediana}}
+\index{mediana@{mediana}!functions.\+h@{functions.\+h}}
+\subsubsection{\texorpdfstring{mediana()}{mediana()}}
+{\footnotesize\ttfamily void mediana (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ \hyperlink{classStudentas}{Studentas} $>$ \&}]{new\+Vec }\end{DoxyParamCaption})}
+
+Funkcija, skaičiuojanti medianą ir išvedanti duomenis į \char`\"{}kietiakai.\+txt\char`\"{} ir \char`\"{}vargšiukai.\+txt\char`\"{} failus 
+
+Apibrėžimas failo functions.\+h eilutėje 225.
+
+
+\begin{DoxyCode}
+226 \{
+227     std::ofstream outFile1;
+228     outFile1.open(\textcolor{stringliteral}{"vargšiukai.txt"});
+229 
+230     std::ofstream outFile2;
+231     outFile2.open(\textcolor{stringliteral}{"kietiakai.txt"});
+232 
+233     outFile1 << std::setw(8) << std::left << \textcolor{stringliteral}{"Vardas"} << std::setw(10) << std::left << \textcolor{stringliteral}{"Pavardė"} <<  \textcolor{stringliteral}{"
+      Galutinis (med)"} << std::endl;
+234     outFile2 << std::setw(8) << std::left << \textcolor{stringliteral}{"Vardas"} << std::setw(10) << std::left << \textcolor{stringliteral}{"Pavardė"} <<  \textcolor{stringliteral}{"
+      Galutinis (med)"} << std::endl;
+235     
+236     \textcolor{keywordtype}{double} med;
+237 
+238     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} vecSize = newVec.size();
+239 
+240     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} i = 0; i < vecSize; i++)
+241     \{
+242         \textcolor{keywordflow}{if} (newVec[i].getSizeOfNd() % 2 == 0)
+243         \{
+244             med = (double) (newVec[i].getNd(newVec[i].getSizeOfNd() / 2) + newVec[i].getNd(newVec[i].
+      getSizeOfNd() / 2 - 1)) / 2;
+245         \}
+246         \textcolor{keywordflow}{else}
+247         \{
+248             med = (double) newVec[i].getNd(newVec[i].getSizeOfNd() / 2);
+249         \}
+250 
+251         \textcolor{keywordflow}{if} (med < 5)
+252         \{
+253             outFile1 << newVec[i].getVardas() << \textcolor{stringliteral}{" "} << newVec[i].getPavarde() << \textcolor{stringliteral}{" "} << med << std::endl;
+254         \}
+255         \textcolor{keywordflow}{else}
+256         \{
+257             outFile2 << newVec[i].getVardas() << \textcolor{stringliteral}{" "} << newVec[i].getPavarde() << \textcolor{stringliteral}{" "} << med << std::endl;
+258         \}
+259     \}
+260     outFile1.close();
+261     outFile2.close();
+262 \}
+\end{DoxyCode}
+\mbox{\Hypertarget{functions_8h_ab0f814ecd25ea81abcbd45c713734424}\label{functions_8h_ab0f814ecd25ea81abcbd45c713734424}} 
+\index{functions.\+h@{functions.\+h}!read\+Generated@{read\+Generated}}
+\index{read\+Generated@{read\+Generated}!functions.\+h@{functions.\+h}}
+\subsubsection{\texorpdfstring{read\+Generated()}{readGenerated()}}
+{\footnotesize\ttfamily void read\+Generated (\begin{DoxyParamCaption}\item[{std\+::vector$<$ \hyperlink{classStudentas}{Studentas} $>$ \&}]{new\+Vec }\end{DoxyParamCaption})}
+
+Funkcija, perskaityti \char`\"{}kursiokai.\+txt\char`\"{} failą 
+
+Apibrėžimas failo functions.\+h eilutėje 69.
+
+
+\begin{DoxyCode}
+70 \{
+71     std::ifstream inFile (\textcolor{stringliteral}{"kursiokai.txt"});
+72     std::string line;
+73 
+74     inFile >> line;
+75     \textcolor{keywordflow}{if} (inFile.eof())
+76     \{
+77         \textcolor{keywordflow}{throw} \textcolor{stringliteral}{"File failed to open"};
+78     \}
+79 
+80     \textcolor{keywordtype}{int} ndCount = 0;
+81 
+82     \textcolor{keywordflow}{while} (line != \textcolor{stringliteral}{"Egzaminas"})
+83     \{
+84         ndCount++;
+85         inFile >> line;
+86     \}
+87     ndCount = ndCount - 2;
+88 
+89     std::string name;
+90     std::string surname;
+91     std::vector <double> temp;
+92     \textcolor{keywordtype}{double} exam;
+93     \textcolor{keywordtype}{int} number;
+94 
+95     \textcolor{keywordflow}{while} (!inFile.eof())
+96     \{
+97         inFile >> name;
+98         inFile >> surname;
+99         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < ndCount; i++)
+100         \{
+101             inFile>> number;
+102             temp.push\_back(number);
+103         \}
+104         inFile >> exam;
+105 
+106         \hyperlink{classStudentas}{Studentas} newStudent(name, surname, temp, exam);
+107         newVec.push\_back(newStudent);
+108 
+109         temp.clear();
+110         temp.shrink\_to\_fit();
+111     \}
+112 
+113     newVec.pop\_back();
+114 
+115     inFile.close();
+116 \}
+\end{DoxyCode}
+\mbox{\Hypertarget{functions_8h_acae96252841ab74a7984577965a61f3e}\label{functions_8h_acae96252841ab74a7984577965a61f3e}} 
+\index{functions.\+h@{functions.\+h}!read\+User@{read\+User}}
+\index{read\+User@{read\+User}!functions.\+h@{functions.\+h}}
+\subsubsection{\texorpdfstring{read\+User()}{readUser()}}
+{\footnotesize\ttfamily void read\+User (\begin{DoxyParamCaption}\item[{std\+::vector$<$ \hyperlink{classStudentas}{Studentas} $>$ \&}]{new\+Vec }\end{DoxyParamCaption})}
+
+Funkcija, išsaugoti vartotojo įvestus duomenis 
+
+Apibrėžimas failo functions.\+h eilutėje 120.
+
+
+\begin{DoxyCode}
+121 \{
+122     std::random\_device rd;
+123     std::mt19937 mt(rd());
+124     std::uniform\_int\_distribution<int> dist (1, 10);
+125 
+126     std::cout << \textcolor{stringliteral}{"Įveskite studento vardą(-us) ir pavardę(-es)."} << std::endl;
+127 
+128     std::string name;
+129     std::cout << \textcolor{stringliteral}{"Vardas: "}; std::cin >> name;
+130 
+131     std::string surname;
+132     std::vector<double> temp;
+133     \textcolor{keywordtype}{double} number, exam;
+134     std::string input;
+135     \textcolor{keywordtype}{int} ndCount;
+136 
+137     \textcolor{keywordflow}{while} (name != \textcolor{stringliteral}{"0"})
+138     \{
+139         std::cout << \textcolor{stringliteral}{"Pavardė: "}; std::cin >> surname;
+140         \textcolor{keywordflow}{if} ((\textcolor{keywordtype}{int}) name[0] < 10 || (\textcolor{keywordtype}{int}) surname[0] < 10)
+141         \{
+142             std::cerr << \textcolor{stringliteral}{"Pirmoji vardo raidė negali būti skaičius"} << std::endl;
+143             exit(1);
+144         \}
+145 
+146         std::cout << \textcolor{stringliteral}{"Ar norite, kad studentų namų darbų ir egzaminų rezultatai būtų generuojami
+       atsitiktinai? (taip/ne) "};
+147         std::cin >> input;
+148         \textcolor{keywordflow}{if} (input == \textcolor{stringliteral}{"taip"})
+149         \{
+150             std::cout << \textcolor{stringliteral}{"Įveskite namų darbų rezultatų kiekį: "}; std::cin >> ndCount;
+151             \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < ndCount; i++)
+152             \{
+153                 number = dist(mt);
+154                 temp.push\_back(number);
+155             \}
+156             exam = dist(mt);
+157 
+158         \}
+159         \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(input == \textcolor{stringliteral}{"ne"})
+160         \{
+161             std::cout << \textcolor{stringliteral}{"Įveskite studento namų darbų ir egzamino rezultatus (10-balėje sistemoje)."} << 
+      std::endl;
+162             std::cout << \textcolor{stringliteral}{"Namu darbai (baigę įveskite 0): "}; std::cin >> number;
+163             \textcolor{keywordflow}{while}(number != 0)
+164             \{
+165                 temp.push\_back(number);
+166                 std::cin >> number;
+167             \}
+168             std::cout << \textcolor{stringliteral}{"Egzaminas: "}; std::cin >> exam;
+169         \}
+170         \textcolor{keywordflow}{else}
+171         \{
+172             std::cerr << \textcolor{stringliteral}{"prašome pasirinkti taip arba ne"} << std::endl;
+173             exit(1);
+174         \}
+175 
+176         \hyperlink{classStudentas}{Studentas} newStudent(name, surname, temp, exam);
+177         newVec.push\_back(newStudent);
+178 
+179         temp.clear();
+180         temp.shrink\_to\_fit();
+181 
+182         std::cout << \textcolor{stringliteral}{"Vardas (spauskite 0, jei norite baigti): "}; std::cin >> name;
+183     \}
+184 \}
+\end{DoxyCode}
+\mbox{\Hypertarget{functions_8h_a3bfd6559fdd1ead599cc75d68e5940b9}\label{functions_8h_a3bfd6559fdd1ead599cc75d68e5940b9}} 
+\index{functions.\+h@{functions.\+h}!vidurkis@{vidurkis}}
+\index{vidurkis@{vidurkis}!functions.\+h@{functions.\+h}}
+\subsubsection{\texorpdfstring{vidurkis()}{vidurkis()}}
+{\footnotesize\ttfamily void vidurkis (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ \hyperlink{classStudentas}{Studentas} $>$ \&}]{new\+Vec }\end{DoxyParamCaption})}
+
+Funkcija, skaičiuojanti vidurkį ir išvedanti duomenis į \char`\"{}kietiakai.\+txt\char`\"{} ir \char`\"{}vargšiukai.\+txt\char`\"{} failus 
+
+Apibrėžimas failo functions.\+h eilutėje 188.
+
+
+\begin{DoxyCode}
+189 \{
+190     std::ofstream outFile1;
+191     outFile1.open(\textcolor{stringliteral}{"vargšiukai.txt"});
+192 
+193     std::ofstream outFile2;
+194     outFile2.open(\textcolor{stringliteral}{"kietiakai.txt"});
+195 
+196     outFile1 << std::setw(8) << std::left << \textcolor{stringliteral}{"Vardas"} << std::setw(10) << std::left << \textcolor{stringliteral}{"Pavardė"} <<  \textcolor{stringliteral}{"
+      Galutinis (vid)"} << std::endl;
+197     outFile2 << std::setw(8) << std::left << \textcolor{stringliteral}{"Vardas"} << std::setw(10) << std::left << \textcolor{stringliteral}{"Pavardė"} <<  \textcolor{stringliteral}{"
+      Galutinis (vid)"} << std::endl;
+198     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} vecSize = newVec.size();
+199 
+200     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} i = 0; i < vecSize; i++)
+201     \{
+202         \textcolor{keywordtype}{int} suma = 0;
+203         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} x = 0; x < newVec[i].getSizeOfNd(); x++)
+204         \{
+205             suma += newVec[i].getNd(x);
+206         \}
+207 
+208         \textcolor{keywordtype}{double} vid = (double) suma / newVec[i].getSizeOfNd();
+209 
+210         \textcolor{keywordflow}{if} (vid < 5)
+211         \{
+212             outFile1 << newVec[i].getVardas() << \textcolor{stringliteral}{" "} << newVec[i].getPavarde() << \textcolor{stringliteral}{" "} << vid << std::endl;
+213         \}
+214         \textcolor{keywordflow}{else}
+215         \{
+216             outFile2 << newVec[i].getVardas() << \textcolor{stringliteral}{" "} << newVec[i].getPavarde() << \textcolor{stringliteral}{" "} << vid << std::endl;
+217         \}
+218     \}
+219     outFile1.close();
+220     outFile2.close();
+221 \}
+\end{DoxyCode}
