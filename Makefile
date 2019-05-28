@@ -1,6 +1,9 @@
 CXX = g++
 CC = gcc
 
+docs:
+	doxygen doxygen
+
 all:	main.o student.o
 	g++ main.o student.o -o tipas
 
