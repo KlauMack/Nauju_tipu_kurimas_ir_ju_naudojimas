@@ -19,6 +19,18 @@ Vardas2   Pavardė2    y.yy
 - `make`
 - `./tipas`
 ## Versijų istorija (changelog)
+### v2.1
+
+**Pridėta:**
+
+# Doxygen
+- `docs/` aplankas, kuriame saugoma Doxygen dokumentacija
+- `doxygen` failas
+## Dokumentacijos generavimas (turite turėti Doxygen)
+- `make docs`
+
+# Versijos
+- programos versijų aplankalai (`v1.1/`, `v1.2/`, `v1.5/`)
 ### v2.0
 
 **Pridėta:**
