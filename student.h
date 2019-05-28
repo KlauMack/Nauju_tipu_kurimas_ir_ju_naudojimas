@@ -1,4 +1,4 @@
-/*! \file student.h
+/*! file student.h
     Failas saugantis Base ir Derived klases.
 */
 #ifndef STUDENT_H
